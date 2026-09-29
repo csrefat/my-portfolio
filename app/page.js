@@ -1,3 +1,57 @@
+import Image from "next/image";
+
+export default function Home() {
+  return (
+    <main className="min-h-screen bg-slate-950 text-white flex flex-col items-center justify-center px-6 py-12">
+      <section className="flex flex-col-reverse md:flex-row items-center justify-between max-w-5xl w-full gap-10">
+        
+        {/* Bam pashe: Text & Info */}
+        <div className="flex-1 text-center md:text-left">
+          <span className="inline-block px-3 py-1 bg-cyan-500/10 text-cyan-400 text-sm font-medium rounded-full mb-4 border border-cyan-500/20">
+            Software Engineer & Web Developer
+          </span>
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight">
+            Hi, I'm <span className="text-cyan-400">Refat</span> 👋
+          </h1>
+          <p className="mt-4 text-lg text-slate-400 leading-relaxed">
+            Building modern, high-performance web applications with Next.js, React, and Tailwind CSS.
+          </p>
+          
+          {/* Action Buttons */}
+          <div className="mt-8 flex flex-wrap gap-4 justify-center md:justify-start">
+            <a
+              href="#contact"
+              className="px-6 py-3 bg-cyan-500 hover:bg-cyan-600 text-slate-950 font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/20"
+            >
+              Get in Touch
+            </a>
+            <a
+              href="/resume.pdf"
+              download="Refat_Resume.pdf"
+              className="px-6 py-3 border border-slate-700 hover:border-slate-500 text-slate-300 rounded-xl transition-all"
+            >
+              Download Resume
+            </a>
+          </div>
+        </div>
+
+        {/* Dan pashe: Apnar Profile Photo */}
+        <div className="flex justify-center">
+          <div className="relative w-60 h-80 md:w-72 md:h-96 rounded-2xl overflow-hidden border-2 border-cyan-500/40 shadow-[0_0_30px_rgba(6,182,212,0.25)]">
+            <Image
+              src="/profile.jpg"
+              alt="MD. JANNATUN NAEM REFAT"
+              fill
+              className="object-cover object-top"
+              priority
+            />
+          </div>
+        </div>
+
+      </section>
+    </main>
+  );
+}
 'use client';
 
 import { motion } from 'framer-motion';
