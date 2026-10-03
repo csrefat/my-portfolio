@@ -16,6 +16,9 @@ export const metadata = {
   description: "Official portfolio of MD. JANNATUN NAEM REFAT (csrefat). Software Engineer specializing in Next.js, React, and Web Development.",
   keywords: ["MD. JANNATUN NAEM REFAT", "csrefat", "Refat Portfolio", "Software Engineer Bangladesh"],
   authors: [{ name: "MD. JANNATUN NAEM REFAT" }],
+  verification: {
+    google: "ECDyucc-2cwNfGKvIRAekogIzp0d9tlBOcb2L0zD80g",
+  },
 };
 
 export default function RootLayout({ children }) {
