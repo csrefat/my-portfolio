@@ -1,80 +1,37 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import ContactSection from './Contact';
+import React, { useState } from 'react';
 
 export default function Home() {
-  const [openExpertise, setOpenExpertise] = useState(0);
-  const [currentDate, setCurrentDate] = useState('');
-  const [showAboutModal, setShowAboutModal] = useState(false);
   const [imgError, setImgError] = useState(false);
-
-  useEffect(() => {
-    setCurrentDate(
-      new Date().toLocaleDateString('en-US', {
-        weekday: 'short',
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric'
-      })
-    );
-  }, []);
-
-  const expertiseData = [
-    {
-      title: "Front-End Development",
-      icon: "💻",
-      skills: "React.js, Next.js (App Router), Tailwind CSS, Framer Motion",
-      description: "Crafting highly responsive, interactive, and modern UI/UX experiences with micro-animations and performance optimization."
-    },
-    {
-      title: "Back-End & API Engineering",
-      icon: "⚙️",
-      skills: "Node.js, Express, MongoDB, REST APIs",
-      description: "Building scalable backend architecture, managing database schemas, and securing API endpoints for full-stack apps."
-    },
-    {
-      title: "Cybersecurity & Network Engineering",
-      icon: "🛡️",
-      skills: "MITM Simulation, Network Traffic Monitoring, Packet Inspection",
-      description: "Designing security simulations, threat mitigation frameworks, and real-time network protocol inspection systems."
-    },
-    {
-      title: "C++ & Hardware / IoT Automation",
-      icon: "🤖",
-      skills: "C++, Arduino, Embedded Sensors, System Automation",
-      description: "Designing low-level embedded software, smart healthcare devices, and algorithm-driven IoT solutions."
-    }
-  ];
 
   const projects = [
     {
       title: "Market Pulse Tracker",
-      repo: "csrefat/market-pulse-tracker",
-      desc: "Real-time financial and market data tracking web application with interactive charts and live rate updates.",
+      tagline: "Next.js & REST API Web Platform",
+      desc: "Real-time financial and market data tracking web application with interactive charts and live currency rate updates.",
       tech: ["Next.js", "React", "Tailwind CSS", "REST API"],
       github: "https://github.com/csrefat/market-pulse-tracker",
       demo: "https://serefat-portfolio.vercel.app"
     },
     {
       title: "Cybersecurity MITM Simulation",
-      repo: "csrefat/Cybersecurity-MITM-Simulation",
-      desc: "Network packet manipulation and Man-In-The-Middle attack/defense simulation framework built for network security analysis.",
+      tagline: "Python & Network Security Simulation",
+      desc: "Network packet manipulation and Man-In-The-Middle attack/defense simulation framework built for security protocol analysis.",
       tech: ["Python", "Networking", "Cybersecurity", "Linux"],
       github: "https://github.com/csrefat/Cybersecurity-MITM-Simulation",
       demo: ""
     },
     {
       title: "NetGuard Project",
-      repo: "csrefat/NetGuard-Project",
-      desc: "Automated network security filter and monitoring system designed for threat detection and packet analysis.",
-      tech: ["Python", "C++", "Network Security", "Socket Programming"],
+      tagline: "Network Security Filter & Packet Inspection",
+      desc: "Automated network security filter and monitoring system designed for real-time threat detection and socket packet inspection.",
+      tech: ["Python", "C++", "Network Security", "Sockets"],
       github: "https://github.com/csrefat/NetGuard-Project",
       demo: ""
     },
     {
       title: "Smart Traffic Management System",
-      repo: "csrefat/smart-traffic-management-system",
+      tagline: "IoT & Microcontroller Signal Control",
       desc: "Intelligent traffic control system leveraging sensors and microcontrollers to dynamically reduce signal congestion.",
       tech: ["C++", "Python", "IoT", "Arduino"],
       github: "https://github.com/csrefat/smart-traffic-management-system",
@@ -82,342 +39,156 @@ export default function Home() {
     },
     {
       title: "Smart Medicine Box",
-      repo: "csrefat/smart-medicine-box",
-      desc: "IoT-enabled healthcare automation system featuring timed pill dispensing, RTC alarm schedules, and remote monitoring alerts.",
+      tagline: "Arduino & Healthcare Automation Device",
+      desc: "IoT-enabled healthcare automation system featuring timed pill dispensing, RTC alarm schedules, and remote alerts.",
       tech: ["C++", "Arduino", "IoT", "Embedded Systems"],
       github: "https://github.com/csrefat/smart-medicine-box",
       demo: ""
     }
   ];
 
-  const scrollToProjects = (e) => {
-    e.preventDefault();
-    const projectsSection = document.getElementById('projects');
-    if (projectsSection) {
-      projectsSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-100 p-4 sm:p-6 lg:p-8 font-sans selection:bg-cyan-500 selection:text-slate-950 scroll-smooth">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6">
-        
-        {/* ================= ১. বাম কলাম (Sidebar Profile) ================= */}
-        <aside className="lg:col-span-3 space-y-6">
-          <div className="bg-slate-900/60 border border-slate-800/80 rounded-3xl p-6 backdrop-blur-xl sticky top-6 shadow-2xl">
-            {/* Availability Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono mb-6">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-              Available for work
+    <div className="min-h-screen bg-slate-100 flex flex-col lg:flex-row font-sans text-slate-800">
+      
+      {/* ================= LEFT SIDEBAR (DevCard Theme) ================= */}
+      <aside className="w-full lg:w-72 bg-[#4eac82] text-white flex flex-col justify-between p-6 shrink-0 lg:fixed lg:h-screen lg:top-0 lg:left-0 lg:overflow-y-auto">
+        <div>
+          {/* Profile Image & Name */}
+          <div className="text-center">
+            <div className="w-28 h-28 mx-auto rounded-full overflow-hidden border-4 border-white/30 bg-emerald-800 flex items-center justify-center text-3xl font-bold shadow-md mb-3">
+              {!imgError ? (
+                <img 
+                  src="/profile.jpg" 
+                  alt="Md. Jannatun Naem Refat" 
+                  className="w-full h-full object-cover"
+                  onError={() => setImgError(true)}
+                />
+              ) : (
+                <span>NR</span>
+              )}
             </div>
-
-            {/* Profile Info */}
-            <div className="flex flex-col items-center text-center">
-              <div className="relative group mb-4">
-                <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full blur opacity-70 group-hover:opacity-100 transition duration-500" />
-                <div className="relative w-28 h-28 rounded-full overflow-hidden border-2 border-slate-900 bg-slate-800 flex items-center justify-center text-3xl font-black text-cyan-400">
-                  {!imgError ? (
-                    <img 
-                      src="/profile.jpg" 
-                      alt="Md. Jannatun Naem Refat" 
-                      className="w-full h-full object-cover"
-                      onError={() => setImgError(true)}
-                    />
-                  ) : (
-                    <span>NR</span>
-                  )}
-                </div>
-              </div>
-              <h1 className="text-xl font-extrabold text-white tracking-tight">Md. Jannatun Naem Refat</h1>
-              <p className="text-xs text-cyan-400 font-mono mt-1 font-semibold">Software Engineer</p>
-            </div>
-
-            {/* Quick Action Buttons */}
-            <div className="grid grid-cols-2 gap-3 mt-6">
-              <a 
-                href="/resume.html" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700/60 text-xs font-semibold text-center text-slate-200 transition flex items-center justify-center gap-1.5"
-              >
-                <span>📄</span> Resume
-              </a>
-              <a 
-                href="#contact" 
-                className="py-2.5 px-4 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-bold text-center transition flex items-center justify-center gap-1.5"
-              >
-                <span>✈️</span> Message
-              </a>
-            </div>
-
-            {/* Social Media Links */}
-            <div className="flex items-center justify-center gap-3 mt-6 pt-6 border-t border-slate-800/80">
-              <a 
-                href="https://github.com/csrefat" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="p-2.5 rounded-xl bg-slate-800/60 hover:bg-slate-700 border border-slate-700/50 text-slate-300 hover:text-white transition"
-                title="GitHub"
-              >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-              </a>
-              <a 
-                href="https://www.linkedin.com/in/md-jannatun-naem-refat-839655234/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="p-2.5 rounded-xl bg-slate-800/60 hover:bg-slate-700 border border-slate-700/50 text-slate-300 hover:text-cyan-400 transition"
-                title="LinkedIn"
-              >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-              </a>
-              <a 
-                href="mailto:refatislam630@gmail.com" 
-                className="p-2.5 rounded-xl bg-slate-800/60 hover:bg-slate-700 border border-slate-700/50 text-slate-300 hover:text-cyan-400 transition"
-                title="Email Me"
-              >
-                <svg className="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-              </a>
-            </div>
-
-            {/* Navigation Links */}
-            <nav className="mt-8 space-y-2 text-sm font-medium">
-              <a href="#home" className="flex items-center gap-3 px-4 py-3 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
-                <span>🏠</span> Home
-              </a>
-              <button 
-                onClick={() => setShowAboutModal(true)}
-                className="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800/60 text-slate-400 hover:text-white transition text-left"
-              >
-                <span>👤</span> About Me
-              </button>
-              <a 
-                href="#projects" 
-                onClick={scrollToProjects}
-                className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800/60 text-slate-400 hover:text-white transition cursor-pointer"
-              >
-                <span>💼</span> Projects
-              </a>
-              <a href="#contact" className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800/60 text-slate-400 hover:text-white transition">
-                <span>✉️</span> Contact
-              </a>
-            </nav>
-          </div>
-        </aside>
-
-        {/* ================= ২. মাঝের কলাম (Main Feed & Projects) ================= */}
-        <section id="home" className="lg:col-span-6 space-y-6">
-          
-          {/* Hero Banner Card */}
-          <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-900/90 to-cyan-950/40 border border-slate-800 rounded-3xl p-8 backdrop-blur-xl shadow-2xl">
-            <div className="absolute top-0 right-0 -mt-12 -mr-12 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
-            
-            <div className="flex items-center justify-between text-xs font-mono text-slate-400 mb-4">
-              <span className="bg-slate-800/80 px-3 py-1 rounded-full border border-slate-700/60">
-                📅 {currentDate || 'Today'}
-              </span>
-              <span className="text-cyan-400 font-semibold">📍 Dhaka, Bangladesh</span>
-            </div>
-
-            <h2 className="text-3xl sm:text-4xl font-black text-white leading-tight tracking-tight mt-2">
-              {"LET'S CODE WITH"} <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-500">
-                JANNATUN NAEM REFAT
-              </span>
-            </h2>
-            <p className="text-slate-400 text-sm mt-3 leading-relaxed">
-              Software Engineer compiling ideas into high-performance web applications, cybersecurity simulations, and IoT automation solutions.
+            <h1 className="text-xl font-bold tracking-tight">Md. Jannatun Naem Refat</h1>
+            <p className="text-xs text-emerald-100 mt-1 leading-relaxed px-2 opacity-90">
+              Hi, my name is Refat and I'm a software engineer. Welcome to my personal website!
             </p>
           </div>
 
-          {/* Career Stats Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {[
-              { label: "EXPERIENCE", value: "1+ Yrs", color: "text-white" },
-              { label: "PROJECTS", value: "5+", color: "text-cyan-400" },
-              { label: "TECH STACK", value: "10+", color: "text-white" },
-              { label: "COMMITS", value: "250+", color: "text-cyan-400" },
-            ].map((stat, idx) => (
-              <div key={idx} className="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-4 text-center backdrop-blur-md">
-                <span className="text-slate-500 text-[10px] font-mono tracking-wider uppercase">{stat.label}</span>
-                <p className={`text-2xl font-black mt-1 ${stat.color}`}>{stat.value}</p>
-              </div>
-            ))}
+          {/* Social Links Icons */}
+          <div className="flex items-center justify-center gap-2 mt-4 text-emerald-900">
+            <a href="https://github.com/csrefat" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-white/90 hover:bg-white flex items-center justify-center transition shadow-sm" title="GitHub">
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/md-jannatun-naem-refat-839655234/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-white/90 hover:bg-white flex items-center justify-center transition shadow-sm" title="LinkedIn">
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a href="mailto:refatislam630@gmail.com" className="w-8 h-8 rounded-full bg-white/90 hover:bg-white flex items-center justify-center transition shadow-sm" title="Email">
+              <svg className="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </a>
           </div>
 
-          {/* All Featured Projects Section */}
-          <div id="projects" className="space-y-4 pt-2">
-            <div className="flex items-center justify-between">
-              <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                <span>📌</span> Featured Projects ({projects.length})
-              </h3>
-              <span className="text-xs text-cyan-400 font-mono">All Repositories</span>
+          {/* Navigation Bar */}
+          <nav className="mt-8 space-y-1 text-sm font-semibold">
+            <a href="#about" className="flex items-center gap-3 px-4 py-2.5 rounded-lg bg-black/10 text-white">
+              <span>👤</span> About Me
+            </a>
+            <a href="#portfolio" className="flex items-center gap-3 px-4 py-2.5 rounded-lg hover:bg-black/10 text-emerald-50 hover:text-white transition">
+              <span>🖼️</span> Portfolio
+            </a>
+            <a href="#what-i-do" className="flex items-center gap-3 px-4 py-2.5 rounded-lg hover:bg-black/10 text-emerald-50 hover:text-white transition">
+              <span>🛠️</span> Services & Skills
+            </a>
+            <a href="/resume.html" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-4 py-2.5 rounded-lg hover:bg-black/10 text-emerald-50 hover:text-white transition">
+              <span>📄</span> Resume
+            </a>
+            <a href="#contact" className="flex items-center gap-3 px-4 py-2.5 rounded-lg hover:bg-black/10 text-emerald-50 hover:text-white transition">
+              <span>✉️</span> Contact
+            </a>
+          </nav>
+        </div>
+
+        {/* Hire Me Action Button */}
+        <div className="mt-8 pt-6 border-t border-white/20">
+          <a 
+            href="#contact" 
+            className="w-full py-3 px-4 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-bold text-center flex items-center justify-center gap-2 shadow-lg transition"
+          >
+            <span>✈️</span> Hire Me
+          </a>
+        </div>
+      </aside>
+
+      {/* ================= MAIN CONTENT AREA ================= */}
+      <main className="flex-1 lg:ml-72 bg-white p-6 sm:p-12 space-y-16">
+        
+        {/* HERO SECTION */}
+        <section id="about" className="flex flex-col md:flex-row items-center justify-between gap-8 pt-4">
+          <div className="space-y-4 max-w-xl">
+            <h1 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight">
+              Md. Jannatun Naem Refat
+            </h1>
+            <h2 className="text-xl sm:text-2xl font-semibold text-slate-600">
+              Software Engineer
+            </h2>
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              I'm a software engineer specialised in full-stack web development, cybersecurity simulations, and IoT automation systems. Want to know how I may help your project? Check out my project <a href="#portfolio" className="text-[#4eac82] font-semibold underline">portfolio</a> and <a href="/resume.html" target="_blank" className="text-[#4eac82] font-semibold underline">online resume</a>.
+            </p>
+            
+            <div className="flex flex-wrap items-center gap-3 pt-2">
+              <a 
+                href="#portfolio" 
+                className="px-6 py-3 rounded-lg bg-[#4eac82] hover:bg-[#3f8f6b] text-white font-bold text-sm flex items-center gap-2 shadow-md transition"
+              >
+                <span>➔</span> View Portfolio
+              </a>
+              <a 
+                href="/resume.html" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="px-6 py-3 rounded-lg bg-slate-700 hover:bg-slate-800 text-white font-bold text-sm flex items-center gap-2 shadow-md transition"
+              >
+                <span>📄</span> View Resume
+              </a>
             </div>
-
-            {projects.map((proj, idx) => (
-              <div key={idx} className="bg-slate-900/60 border border-slate-800/80 rounded-2xl overflow-hidden backdrop-blur-md hover:border-cyan-500/40 transition duration-300">
-                {/* Mac-style Window Header */}
-                <div className="bg-slate-950/80 px-4 py-2.5 border-b border-slate-800/80 flex items-center justify-between text-xs font-mono text-slate-400">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block" />
-                    <span className="w-3 h-3 rounded-full bg-yellow-500/80 inline-block" />
-                    <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block" />
-                  </div>
-                  <span className="text-[11px] text-slate-400">{proj.repo}</span>
-                </div>
-
-                {/* Card Content */}
-                <div className="p-6">
-                  <h4 className="text-xl font-bold text-white">{proj.title}</h4>
-                  <p className="text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed">{proj.desc}</p>
-                  
-                  {/* Tech Stack Pills */}
-                  <div className="flex flex-wrap gap-2 mt-4">
-                    {proj.tech.map((t) => (
-                      <span key={t} className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-cyan-500/10 border border-cyan-500/20 text-cyan-400">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Links */}
-                  <div className="flex items-center gap-3 mt-6 pt-4 border-t border-slate-800/60">
-                    <a href={proj.github} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-slate-300 hover:text-white flex items-center gap-1.5 transition">
-                      <span>💻</span> Codebase
-                    </a>
-                    {proj.demo && (
-                      <a href={proj.demo} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-400 flex items-center gap-1.5 transition ml-auto">
-                        <span>🚀</span> Live Demo
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
 
-          {/* Contact Section Component */}
-          <div id="contact" className="bg-slate-900/60 border border-slate-800/80 rounded-3xl p-2 backdrop-blur-xl">
-            <ContactSection />
+          {/* Photo Frame */}
+          <div className="w-full md:w-80 h-80 rounded-2xl overflow-hidden shadow-2xl border-4 border-slate-100 bg-slate-200 shrink-0">
+            {!imgError ? (
+              <img src="/profile.jpg" alt="Refat" className="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500" />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center text-slate-400 font-bold">Refat Photo</div>
+            )}
           </div>
         </section>
 
-        {/* ================= ৩. ডান কলাম (Skill Set & Expertise) ================= */}
-        <aside className="lg:col-span-3 space-y-6">
-          
-          {/* Skill Set Widget */}
-          <div className="bg-slate-900/60 border border-slate-800/80 rounded-3xl p-6 backdrop-blur-xl shadow-2xl">
-            <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-              <span>⚡</span> Skill Set
-            </h3>
-            <div className="grid grid-cols-3 gap-3">
-              {[
-                { name: "React", icon: "⚛️", color: "text-cyan-400" },
-                { name: "Next.js", icon: "▲", color: "text-white" },
-                { name: "Tailwind", icon: "🎨", color: "text-sky-400" },
-                { name: "JavaScript", icon: "🟨", color: "text-yellow-400" },
-                { name: "Python", icon: "🐍", color: "text-blue-400" },
-                { name: "C++", icon: "⚡", color: "text-indigo-400" },
-                { name: "Node.js", icon: "🟢", color: "text-emerald-400" },
-                { name: "MongoDB", icon: "🍃", color: "text-green-500" },
-                { name: "Git", icon: "🟧", color: "text-orange-500" },
-              ].map((s) => (
-                <div key={s.name} className="bg-slate-800/40 border border-slate-700/40 rounded-xl p-3 text-center hover:border-cyan-400/50 hover:bg-slate-800/80 transition duration-300">
-                  <span className="text-xl block mb-1">{s.icon}</span>
-                  <span className={`text-[11px] font-semibold block ${s.color}`}>{s.name}</span>
-                </div>
-              ))}
+        <hr className="border-slate-100" />
+
+        {/* WHAT I DO SECTION */}
+        <section id="what-i-do" className="space-y-6">
+          <div className="border-l-4 border-[#4eac82] pl-3">
+            <h2 className="text-2xl font-bold text-slate-900">What I do</h2>
+          </div>
+          <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-3xl">
+            I have 1+ year of experience building web software, cybersecurity threat simulation tools, and IoT hardware automation projects. Below is a quick overview of my main technical skill sets.
+          </p>
+
+          {/* Skills Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
+            
+            <div className="space-y-2 p-4 rounded-xl border border-slate-100 bg-slate-50 hover:shadow-md transition">
+              <div className="text-2xl">⚛️</div>
+              <h3 className="font-bold text-slate-900 text-base">React & Next.js</h3>
+              <p className="text-xs text-slate-500 leading-relaxed">
+                Building scalable frontend applications, App Router layout, Tailwind CSS design system, and Framer Motion UI animations.
+              </p>
             </div>
-          </div>
 
-          {/* Interactive Expertise Accordion */}
-          <div className="bg-slate-900/60 border border-slate-800/80 rounded-3xl p-6 backdrop-blur-xl shadow-2xl">
-            <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-              <span>🛠️</span> Expertise
-            </h3>
-
-            <div className="space-y-3">
-              {expertiseData.map((item, idx) => {
-                const isOpen = openExpertise === idx;
-                return (
-                  <div key={idx} className="border border-slate-800 rounded-2xl overflow-hidden bg-slate-950/40">
-                    <button
-                      onClick={() => setOpenExpertise(isOpen ? -1 : idx)}
-                      className="w-full p-4 text-left flex items-center justify-between font-bold text-xs sm:text-sm text-slate-200 hover:text-cyan-400 transition"
-                    >
-                      <span className="flex items-center gap-2">
-                        <span>{item.icon}</span> {item.title}
-                      </span>
-                      <span className="text-slate-500">{isOpen ? "▲" : "▼"}</span>
-                    </button>
-
-                    <AnimatePresence>
-                      {isOpen && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="px-4 pb-4 border-t border-slate-800/60 pt-3"
-                        >
-                          <p className="text-xs text-cyan-400 font-mono mb-2 font-medium">{item.skills}</p>
-                          <p className="text-xs text-slate-400 leading-relaxed">{item.description}</p>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                );
-              })}
+            <div className="space-y-2 p-4 rounded-xl border border-slate-100 bg-slate-50 hover:shadow-md transition">
+              <div className="text-2xl">🟢</div>
+              <h3 className="font-bold text-slate-900 text-base">Node.js & Express</h3>
+              <p className="text-xs text-slate-500 leading-relaxed">
+                Developing RESTful APIs, server logic, MongoDB database integration, authentication, and backend routing.
+              </p>
             </div>
-          </div>
 
-        </aside>
-
-      </div>
-
-      {/* ================= Interactive About Me Modal ================= */}
-      <AnimatePresence>
-        {showAboutModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative"
-            >
-              <button 
-                onClick={() => setShowAboutModal(false)}
-                className="absolute top-4 right-4 text-slate-400 hover:text-white p-2 rounded-full bg-slate-800"
-              >
-                ✕
-              </button>
-
-              <h3 className="text-2xl font-bold text-white mb-2">About Me 👤</h3>
-              <p className="text-xs font-mono text-cyan-400 mb-4">Md. Jannatun Naem Refat — Software Engineer</p>
-
-              <div className="space-y-3 text-slate-300 text-xs sm:text-sm leading-relaxed">
-                <p>
-                  I am a passionate <strong className="text-white">Computer Science & Engineering (CSE)</strong> graduate from ULAB and a Software Engineer based in Dhaka, Bangladesh.
-                </p>
-                <p>
-                  My core strengths lie in full-stack web development using <strong className="text-cyan-400">Next.js, React, Node.js</strong>, Network Security & Threat Analysis, and hardware automation using <strong className="text-cyan-400">C++ and IoT</strong>.
-                </p>
-                <p>
-                  I thrive on solving complex engineering problems and crafting fluid user experiences with modern tools like Framer Motion & Tailwind CSS.
-                </p>
-              </div>
-
-              <div className="mt-6 pt-4 border-t border-slate-800 flex justify-end">
-                <button 
-                  onClick={() => setShowAboutModal(false)}
-                  className="px-5 py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-bold text-xs"
-                >
-                  Close Window
-                </button>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
-    </main>
-  );
-}
+            <div className="space-y-2 p
