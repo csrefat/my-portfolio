@@ -130,10 +130,10 @@ export default function Home() {
 
             {/* Social Icons */}
             <div className="flex space-x-2 mt-4 text-xs">
-              <a href="https://x.com" target="_blank" rel="noreferrer" className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition">X</a>
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition">in</a>
+            
+              <a href="https://www.linkedin.com/in/md-jannatun-naem-refat-839655234/?isSelfProfile=true" target="_blank" rel="noreferrer" className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition">in</a>
               <a href="https://github.com/csrefat" target="_blank" rel="noreferrer" className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition">gh</a>
-              <a href="https://stackoverflow.com" target="_blank" rel="noreferrer" className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition">so</a>
+              <a href="refatislam630@gmail.com" target="_blank" rel="noreferrer" className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition">so</a>
             </div>
           </div>
 
