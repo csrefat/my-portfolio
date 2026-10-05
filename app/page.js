@@ -1,11 +1,23 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ContactSection from './Contact';
 
 export default function Home() {
-  // Accordion State for Expertise
   const [openExpertise, setOpenExpertise] = useState(0);
+  const [currentDate, setCurrentDate] = useState('');
+
+  // Hydration Safe Date Formatting
+  useEffect(() => {
+    setCurrentDate(
+      new Date().toLocaleDateString('en-US', {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+      })
+    );
+  }, []);
 
   const expertiseData = [
     {
@@ -115,13 +127,13 @@ export default function Home() {
             
             <div className="flex items-center justify-between text-xs font-mono text-slate-400 mb-4">
               <span className="bg-slate-800/80 px-3 py-1 rounded-full border border-slate-700/60">
-                📅 {new Date().toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}
+                📅 {currentDate || 'Today'}
               </span>
               <span className="text-cyan-400 font-semibold">📍 Dhaka, Bangladesh</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl font-black text-white leading-tight tracking-tight mt-2">
-              LET'S CODE WITH <br />
+              {"LET'S CODE WITH"} <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-500">
                 JANNATUN NAEM REFAT
               </span>
@@ -180,10 +192,10 @@ export default function Home() {
 
                   {/* Links */}
                   <div className="flex items-center gap-3 mt-6 pt-4 border-t border-slate-800/60">
-                    <a href={proj.github} target="_blank" className="text-xs font-semibold text-slate-300 hover:text-white flex items-center gap-1.5 transition">
+                    <a href={proj.github} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-slate-300 hover:text-white flex items-center gap-1.5 transition">
                       <span>💻</span> Codebase
                     </a>
-                    <a href={proj.demo} target="_blank" className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-400 flex items-center gap-1.5 transition ml-auto">
+                    <a href={proj.demo} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-400 flex items-center gap-1.5 transition ml-auto">
                       <span>🚀</span> Live Demo
                     </a>
                   </div>
@@ -239,4 +251,37 @@ export default function Home() {
                   <div key={idx} className="border border-slate-800 rounded-2xl overflow-hidden bg-slate-950/40">
                     <button
                       onClick={() => setOpenExpertise(isOpen ? -1 : idx)}
-                      className="w-full p-4 text-left flex items-center justify-between font-bold text-xs
+                      className="w-full p-4 text-left flex items-center justify-between font-bold text-xs sm:text-sm text-slate-200 hover:text-cyan-400 transition"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span>{item.icon}</span> {item.title}
+                      </span>
+                      <span className="text-slate-500">{isOpen ? "▲" : "▼"}</span>
+                    </button>
+
+                    <AnimatePresence>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="px-4 pb-4 border-t border-slate-800/60 pt-3"
+                        >
+                          <p className="text-xs text-cyan-400 font-mono mb-2 font-medium">{item.skills}</p>
+                          <p className="text-xs text-slate-400 leading-relaxed">{item.description}</p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+    </main>
+  );
+}
