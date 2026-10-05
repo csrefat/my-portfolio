@@ -108,8 +108,8 @@ export default function Home() {
       <aside className="w-full lg:w-72 bg-[#54B689] text-white p-6 flex flex-col justify-between lg:fixed lg:h-screen z-40 shadow-md">
         <div>
           {/* Header Title */}
-          <h1 className="text-center font-bold text-xl mb-4 tracking-wide text-white">
-            Serefat
+          <h1 className="text-center font-bold text-lg mb-4 tracking-wide text-white">
+            Md. Jannatun Naem Refat
           </h1>
 
           {/* Profile Section */}
@@ -117,7 +117,7 @@ export default function Home() {
             <div className="w-28 h-28 rounded-full overflow-hidden mb-3 border-2 border-white shadow-md">
               <img
                 src="/profile.jpg"
-                alt="Serefat Profile"
+                alt="Md. Jannatun Naem Refat"
                 className="w-full h-full object-cover"
                 onError={(e) => {
                   e.currentTarget.src = "https://via.placeholder.com/150";
@@ -125,15 +125,15 @@ export default function Home() {
               />
             </div>
             <p className="text-xs text-emerald-100 leading-relaxed px-2 font-light">
-              Hi, my name is Serefat and I'm a Cybersecurity Specialist & Full-Stack Developer!
+              Hi, my name is Md. Jannatun Naem Refat and I'm a Software Engineer! Welcome to my personal portfolio.
             </p>
 
             {/* Social Icons */}
             <div className="flex space-x-2 mt-4 text-xs">
-              <a href="#" className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition">X</a>
-              <a href="#" className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition">in</a>
-              <a href="#" className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition">gh</a>
-              <a href="#" className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition">so</a>
+              <a href="https://x.com" target="_blank" rel="noreferrer" className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition">X</a>
+              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition">in</a>
+              <a href="https://github.com/csrefat" target="_blank" rel="noreferrer" className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition">gh</a>
+              <a href="https://stackoverflow.com" target="_blank" rel="noreferrer" className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition">so</a>
             </div>
           </div>
 
@@ -157,7 +157,7 @@ export default function Home() {
           </nav>
         </div>
 
-        {/* Hire Me Button & Dark Toggle */}
+        {/* Hire Me Button */}
         <div className="pt-4 border-t border-emerald-400/40 text-center">
           <a
             href="#contact"
@@ -176,13 +176,13 @@ export default function Home() {
           <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-8">
             <div className="flex-1">
               <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
-                Serefat
+                Md. Jannatun Naem Refat
               </h2>
               <p className="text-slate-500 font-medium text-lg mt-1 mb-4">
-                Cybersecurity Specialist & Full-Stack Developer
+                Software Engineer
               </p>
               <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                I'm a software engineer specialized in cybersecurity network tools and web application development. Want to know how I may help your project? Check out my project{" "}
+                I'm a software engineer specialised in full-stack web applications, cybersecurity network tools, and scalable system development. Want to know how I may help your project? Check out my project{" "}
                 <a href="#portfolio" className="text-[#54B689] underline font-medium">portfolio</a> and{" "}
                 <a href="/resume.html" className="text-[#54B689] underline font-medium">online resume</a>.
               </p>
@@ -207,7 +207,7 @@ export default function Home() {
             <div className="w-full md:w-80 h-64 md:h-72 rounded-md overflow-hidden shadow-md border border-slate-200 bg-slate-100 flex-shrink-0">
               <img
                 src="/profile.jpg"
-                alt="Serefat"
+                alt="Md. Jannatun Naem Refat"
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-300"
                 onError={(e) => {
                   e.currentTarget.src = "https://via.placeholder.com/350x300";
@@ -217,7 +217,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* What I Do Section (Exact Green Line Header) */}
+        {/* What I Do Section */}
         <section id="what-i-do" className="mb-16">
           <div className="flex items-center mb-2">
             <div className="w-1.5 h-7 bg-[#54B689] mr-3 rounded-full"></div>
@@ -300,10 +300,10 @@ export default function Home() {
                   </button>
                   <div className="flex space-x-2 text-slate-500">
                     {project.github && (
-                      <a href={project.github} target="_blank" className="hover:text-slate-900">GitHub</a>
+                      <a href={project.github} target="_blank" rel="noreferrer" className="hover:text-slate-900">GitHub</a>
                     )}
                     {project.demo && (
-                      <a href={project.demo} target="_blank" className="text-[#54B689] hover:underline">Demo</a>
+                      <a href={project.demo} target="_blank" rel="noreferrer" className="text-[#54B689] hover:underline">Demo</a>
                     )}
                   </div>
                 </div>
@@ -388,12 +388,12 @@ export default function Home() {
 
             <div className="pt-3 border-t border-slate-100 flex justify-end space-x-2 text-xs font-medium">
               {selectedProject.github && (
-                <a href={selectedProject.github} target="_blank" className="px-4 py-1.5 border border-slate-300 rounded hover:bg-slate-50">
+                <a href={selectedProject.github} target="_blank" rel="noreferrer" className="px-4 py-1.5 border border-slate-300 rounded hover:bg-slate-50">
                   GitHub
                 </a>
               )}
               {selectedProject.demo && (
-                <a href={selectedProject.demo} target="_blank" className="px-4 py-1.5 bg-[#54B689] text-white rounded hover:bg-[#439c73]">
+                <a href={selectedProject.demo} target="_blank" rel="noreferrer" className="px-4 py-1.5 bg-[#54B689] text-white rounded hover:bg-[#439c73]">
                   Live Demo
                 </a>
               )}
