@@ -14,12 +14,13 @@ export default function ContactSection() {
     e.preventDefault();
     setStatus('Sending...');
 
-    // ⚠️ আপনার EmailJS-এর Public Key-টি এখানে দিন (যেমন: 'gkX_abc123xyz')
-    const PUBLIC_KEY = 'Cjc_EgEqMeuq11BB5Y'; 
+    const SERVICE_ID = 'service_359h6qf';
+    const TEMPLATE_ID = '6l1w2t8';
+    const PUBLIC_KEY = 'Cjc_EgEqMeuq11BB5';
 
     emailjs.send(
-      'service_359h6qf',
-      '6l1w2t8',
+      SERVICE_ID,
+      TEMPLATE_ID,
       {
         name: formData.name,
         email: formData.email,
@@ -33,8 +34,7 @@ export default function ContactSection() {
     })
     .catch((error) => {
       console.error('EmailJS Error:', error);
-      // স্ক্রিনে মূল এরর মেসেজটি দেখাবে
-      setStatus(`Failed: ${error?.text || JSON.stringify(error)}`);
+      setStatus(`Failed: ${error?.text || 'Could not send message.'}`);
     });
   };
 
