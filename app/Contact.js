@@ -14,7 +14,7 @@ export default function ContactSection() {
       'service_359h6qf',   //  Service ID
       '6l1w2t8',           // Template ID
       form.current,
-      's7Pp8NUpee8xOyoVa-FKd'    //  Public Key 
+      'Cjc_EgEqMeuq11BB5'    //  Public Key 
     )
     .then(() => {
       setStatus('Message sent successfully! 🎉');
