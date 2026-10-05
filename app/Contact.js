@@ -15,7 +15,7 @@ export default function ContactSection() {
     setStatus('Sending...');
 
     const SERVICE_ID = 'service_359h6qf';
-    const TEMPLATE_ID = '6l1w2t8';
+    const TEMPLATE_ID = 'template_iq64p1i';
     const PUBLIC_KEY = 'Cjc_EgEqMeuq11BB5';
 
     emailjs.send(
