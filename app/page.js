@@ -3,6 +3,7 @@
 
 import { motion } from 'framer-motion';
 import { Mail, ArrowRight, ExternalLink, Cpu, Shield, Database, Network } from 'lucide-react';
+import ContactSection from './Contact';
 
 export default function Portfolio() {
   const fadeUp = {
@@ -152,7 +153,8 @@ export default function Portfolio() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="max-w-5xl mx-auto px-6 py-32 border-t border-white/5 text-center">
+        <ContactSection />
+      { /* <section id="contact" className="max-w-5xl mx-auto px-6 py-32 border-t border-white/5 text-center">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
             <h2 className="text-4xl md:text-6xl font-bold text-white mb-8">Let's build something <br/><span className="text-cyan-400">extraordinary.</span></h2>
             <p className="text-slate-400 text-lg mb-12 max-w-2xl mx-auto">
@@ -162,7 +164,7 @@ export default function Portfolio() {
               <Mail className="w-5 h-5" /> Say Hello
             </a>
           </motion.div>
-        </section>
+        </section> */ }
 
       </main>
 
