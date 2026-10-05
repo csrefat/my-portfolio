@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 
-// Project Data
+// Project Data from screen
 const projects = [
   {
     id: 0,
@@ -69,220 +69,290 @@ export default function Home() {
       : projects.filter((p) => p.category === filter);
 
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-100 font-sans">
-      {/* Header / Navbar */}
-      <header className="fixed top-0 left-0 w-full bg-slate-900/80 backdrop-blur-md border-b border-slate-800 z-50">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
-            Portfolio
-          </h1>
-          <nav className="flex space-x-6 text-sm">
-            <a href="#about" className="hover:text-blue-400 transition">About</a>
-            <a href="#projects" className="hover:text-blue-400 transition">Projects</a>
-            <a href="#contact" className="hover:text-blue-400 transition">Contact</a>
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col lg:flex-row font-sans">
+      
+      {/* DevCard Sidebar (Left Side) */}
+      <aside className="w-full lg:w-72 bg-slate-900 border-r border-slate-800 p-6 flex flex-col justify-between lg:fixed lg:h-screen z-40">
+        <div>
+          {/* Profile Section */}
+          <div className="flex flex-col items-center text-center pb-6 border-b border-slate-800">
+            <div className="w-28 h-28 rounded-full overflow-hidden mb-4 border-2 border-emerald-500 shadow-lg">
+              <img
+                src="/profile.jpg"
+                alt="Profile"
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.currentTarget.src = "https://via.placeholder.com/150";
+                }}
+              />
+            </div>
+            <h1 className="text-xl font-bold text-white">Serefat</h1>
+            <p className="text-xs text-emerald-400 font-medium mt-1">
+              Cybersecurity & Full-Stack Dev
+            </p>
+            <p className="text-xs text-slate-400 mt-2 line-clamp-2">
+              Building secure network tools & high-performance web platforms.
+            </p>
+          </div>
+
+          {/* Navigation Links */}
+          <nav className="my-6 space-y-2">
+            <a
+              href="#about"
+              className="flex items-center space-x-3 px-4 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition"
+            >
+              <span>👤 About Me</span>
+            </a>
+            <a
+              href="#projects"
+              className="flex items-center space-x-3 px-4 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition"
+            >
+              <span>💼 Portfolio</span>
+            </a>
+            <a
+              href="#contact"
+              className="flex items-center space-x-3 px-4 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition"
+            >
+              <span>✉️ Contact</span>
+            </a>
           </nav>
         </div>
-      </header>
 
-      {/* Hero Section */}
-      <section id="about" className="pt-32 pb-20 px-6 max-w-6xl mx-auto flex flex-col items-center text-center">
-        <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
-          Cybersecurity Specialist & Full-Stack Developer
-        </h2>
-        <p className="text-slate-400 max-w-2xl mb-8 text-lg">
-          Building secure network defense systems, web platforms, and automated software solutions.
-        </p>
-        <div className="flex space-x-4">
+        {/* Action Button & Footer */}
+        <div className="pt-4 border-t border-slate-800 text-center">
           <a
-            href="#projects"
-            className="px-6 py-3 bg-blue-600 hover:bg-blue-500 font-medium rounded-lg transition"
+            href="/resume.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full inline-block text-center py-2.5 px-4 bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-sm rounded-lg transition mb-4 shadow"
           >
-            View Work
+            📄 View Resume
           </a>
-          <a
-            href="#contact"
-            className="px-6 py-3 border border-slate-700 hover:border-slate-500 font-medium rounded-lg transition"
-          >
-            Get In Touch
-          </a>
+          <p className="text-[11px] text-slate-500">
+            © {new Date().getFullYear()} DevCard Portfolio
+          </p>
         </div>
-      </section>
+      </aside>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-16 px-6 max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-center justify-between mb-10">
-          <div>
-            <h3 className="text-3xl font-bold mb-2">Featured Projects</h3>
-            <p className="text-slate-400">Explore my cybersecurity & web applications</p>
-          </div>
+      {/* Main Content Area (Right Side) */}
+      <main className="flex-1 lg:ml-72 p-6 md:p-12 max-w-5xl">
+        
+        {/* DevCard Banner / About */}
+        <section id="about" className="mb-16 pt-4">
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-xl">
+            <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400">
+              Welcome to my DevCard
+            </span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-white mt-2 mb-4">
+              Hi, I'm Serefat 👋
+            </h2>
+            <p className="text-slate-300 leading-relaxed text-sm md:text-base mb-6">
+              I am a specialized software engineer focusing on Cybersecurity, Network Protocols, and Modern Web Applications using Next.js, Python, and C++.
+            </p>
 
-          {/* Filter Tabs */}
-          <div className="flex space-x-2 mt-4 md:mt-0 bg-slate-900 p-1 rounded-xl border border-slate-800">
-            {["all", "web", "cyber"].map((category) => (
-              <button
-                key={category}
-                onClick={() => setFilter(category)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium capitalize transition ${
-                  filter === category
-                    ? "bg-blue-600 text-white"
-                    : "text-slate-400 hover:text-white"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Project Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project) => (
-            <div
-              key={project.id}
-              className="bg-slate-900 border border-slate-800 rounded-xl p-6 flex flex-col justify-between hover:border-slate-700 transition"
-            >
-              <div>
-                <div className="flex justify-between items-start mb-3">
-                  <span className="text-xs uppercase px-2.5 py-1 bg-slate-800 text-blue-400 rounded-md font-semibold tracking-wide">
-                    {project.category}
-                  </span>
-                </div>
-                <h4 className="text-xl font-bold mb-1">{project.title}</h4>
-                <p className="text-xs text-blue-400 font-medium mb-3">{project.tagline}</p>
-                <p className="text-slate-400 text-sm mb-4 line-clamp-3">{project.desc}</p>
-
-                <div className="flex flex-wrap gap-1.5 mb-6">
-                  {project.tech.map((t, index) => (
-                    <span
-                      key={index}
-                      className="text-xs bg-slate-800/80 text-slate-300 px-2 py-0.5 rounded"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
+            {/* Quick Feature Badges */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-800/80">
+              <div className="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                <span className="text-lg">🛡️</span>
+                <h3 className="text-sm font-bold text-white mt-1">Security First</h3>
+                <p className="text-xs text-slate-400 mt-0.5">Packet sniffing & ARP spoof detection</p>
               </div>
-
-              <div className="flex items-center justify-between pt-4 border-t border-slate-800/80">
-                <button
-                  onClick={() => setSelectedProject(project)}
-                  className="text-sm text-blue-400 hover:underline font-medium"
-                >
-                  View Details
-                </button>
-                <div className="flex space-x-3 text-sm">
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-slate-400 hover:text-white transition"
-                    >
-                      GitHub
-                    </a>
-                  )}
-                  {project.demo && (
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-400 hover:text-blue-300 transition"
-                    >
-                      Demo
-                    </a>
-                  )}
-                </div>
+              <div className="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                <span className="text-lg">⚡</span>
+                <h3 className="text-sm font-bold text-white mt-1">Web Apps</h3>
+                <p className="text-xs text-slate-400 mt-0.5">Interactive Next.js dashboards & APIs</p>
+              </div>
+              <div className="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                <span className="text-lg">⚙️</span>
+                <h3 className="text-sm font-bold text-white mt-1">Low-Level Dev</h3>
+                <p className="text-xs text-slate-400 mt-0.5">Socket programming with Python & C++</p>
               </div>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-20 px-6 max-w-4xl mx-auto text-center">
-        <h3 className="text-3xl font-bold mb-4">Let's Connect</h3>
-        <p className="text-slate-400 mb-8 max-w-lg mx-auto">
-          Interested in collaboration, security consulting, or standard web development? Feel free to reach out.
-        </p>
-        <form onSubmit={(e) => e.preventDefault()} className="max-w-md mx-auto space-y-4 text-left">
-          <div>
-            <label className="block text-xs font-semibold text-slate-400 uppercase mb-1">Name</label>
-            <input
-              type="text"
-              placeholder="Your Name"
-              className="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-2.5 text-slate-200 focus:outline-none focus:border-blue-500"
-            />
           </div>
-          <div>
-            <label className="block text-xs font-semibold text-slate-400 uppercase mb-1">Email</label>
-            <input
-              type="email"
-              placeholder="your.email@example.com"
-              className="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-2.5 text-slate-200 focus:outline-none focus:border-blue-500"
-            />
-          </div>
-          <div>
-            <label className="block text-xs font-semibold text-slate-400 uppercase mb-1">Message</label>
-            <textarea
-              rows={4}
-              placeholder="Your message..."
-              className="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-2.5 text-slate-200 focus:outline-none focus:border-blue-500"
-            ></textarea>
-          </div>
-          <button
-            type="submit"
-            className="w-full py-3 bg-blue-600 hover:bg-blue-500 font-semibold rounded-lg transition text-white"
-          >
-            Send Message
-          </button>
-        </form>
-      </section>
+        </section>
 
-      {/* Footer */}
-      <footer className="border-t border-slate-900 py-6 text-center text-xs text-slate-500">
-        © {new Date().getFullYear()} Serefat Portfolio. All rights reserved.
-      </footer>
+        {/* Portfolio / Projects Section */}
+        <section id="projects" className="mb-16">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
+            <div>
+              <h3 className="text-2xl font-bold text-white">Featured Projects</h3>
+              <p className="text-xs text-slate-400 mt-1">Explore my security tools & web platforms</p>
+            </div>
 
-      {/* Details Modal */}
+            {/* DevCard Filter Tabs */}
+            <div className="flex space-x-2 bg-slate-900 p-1 rounded-xl border border-slate-800 self-start">
+              {["all", "web", "cyber"].map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setFilter(cat)}
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold capitalize transition ${
+                    filter === cat
+                      ? "bg-emerald-600 text-white"
+                      : "text-slate-400 hover:text-white"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Project Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {filteredProjects.map((project) => (
+              <div
+                key={project.id}
+                className="bg-slate-900 border border-slate-800 rounded-xl p-6 flex flex-col justify-between hover:border-emerald-500/50 transition shadow-lg group"
+              >
+                <div>
+                  <div className="flex justify-between items-center mb-3">
+                    <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800/50">
+                      {project.category}
+                    </span>
+                  </div>
+
+                  <h4 className="text-lg font-bold text-white group-hover:text-emerald-400 transition">
+                    {project.title}
+                  </h4>
+                  <p className="text-xs text-emerald-400/90 font-medium mb-2">{project.tagline}</p>
+                  <p className="text-xs text-slate-400 mb-4 line-clamp-3 leading-relaxed">
+                    {project.desc}
+                  </p>
+
+                  <div className="flex flex-wrap gap-1.5 mb-6">
+                    {project.tech.map((t, idx) => (
+                      <span
+                        key={idx}
+                        className="text-[11px] bg-slate-950 text-slate-300 border border-slate-800 px-2 py-0.5 rounded"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
+                  <button
+                    onClick={() => setSelectedProject(project)}
+                    className="text-emerald-400 hover:underline font-semibold"
+                  >
+                    View Case Study →
+                  </button>
+                  <div className="flex space-x-3">
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-slate-400 hover:text-white transition"
+                      >
+                        GitHub
+                      </a>
+                    )}
+                    {project.demo && (
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-emerald-400 hover:text-emerald-300 transition"
+                      >
+                        Demo
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Contact Form Section */}
+        <section id="contact" className="mb-12">
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8">
+            <h3 className="text-2xl font-bold text-white mb-2">Get In Touch</h3>
+            <p className="text-xs text-slate-400 mb-6">
+              Have a project or security audit request? Send a message directly.
+            </p>
+
+            <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-medium text-slate-400 mb-1">Name</label>
+                  <input
+                    type="text"
+                    placeholder="Your Name"
+                    className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2 text-sm text-slate-200 focus:outline-none focus:border-emerald-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-slate-400 mb-1">Email</label>
+                  <input
+                    type="email"
+                    placeholder="your.email@example.com"
+                    className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2 text-sm text-slate-200 focus:outline-none focus:border-emerald-500"
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-slate-400 mb-1">Message</label>
+                <textarea
+                  rows={4}
+                  placeholder="How can I help you?"
+                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2 text-sm text-slate-200 focus:outline-none focus:border-emerald-500"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-sm rounded-lg transition"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+        </section>
+
+      </main>
+
+      {/* DevCard Project Details Modal */}
       {selectedProject && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 space-y-6">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 space-y-6 shadow-2xl">
             <div className="flex justify-between items-start">
               <div>
-                <span className="text-xs uppercase px-2.5 py-1 bg-slate-800 text-blue-400 rounded-md font-semibold">
+                <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800/50">
                   {selectedProject.category}
                 </span>
-                <h3 className="text-2xl font-bold mt-2">{selectedProject.title}</h3>
-                <p className="text-sm text-blue-400">{selectedProject.tagline}</p>
+                <h3 className="text-2xl font-bold text-white mt-2">{selectedProject.title}</h3>
+                <p className="text-xs text-emerald-400 mt-0.5">{selectedProject.tagline}</p>
               </div>
               <button
                 onClick={() => setSelectedProject(null)}
-                className="text-slate-400 hover:text-white p-2 text-xl"
+                className="text-slate-400 hover:text-white p-1 text-xl"
               >
                 ✕
               </button>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 bg-slate-950 p-4 rounded-lg text-sm border border-slate-800/60">
+            <div className="grid grid-cols-2 gap-4 bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs">
               <div>
-                <span className="text-slate-500 text-xs block">Client</span>
+                <span className="text-slate-500 block">Client</span>
                 <span className="text-slate-200 font-medium">{selectedProject.client || "N/A"}</span>
               </div>
               <div>
-                <span className="text-slate-500 text-xs block">Industry</span>
+                <span className="text-slate-500 block">Industry</span>
                 <span className="text-slate-200 font-medium">{selectedProject.industry || "N/A"}</span>
               </div>
             </div>
 
             <div>
-              <h4 className="text-sm font-semibold text-slate-300 mb-2">Overview</h4>
-              <p className="text-slate-400 text-sm leading-relaxed">{selectedProject.overview}</p>
+              <h4 className="text-xs font-bold uppercase text-slate-400 tracking-wider mb-2">Overview</h4>
+              <p className="text-slate-300 text-sm leading-relaxed">{selectedProject.overview}</p>
             </div>
 
             {selectedProject.requirements && selectedProject.requirements.length > 0 && (
               <div>
-                <h4 className="text-sm font-semibold text-slate-300 mb-2">Key Requirements & Features</h4>
-                <ul className="list-disc list-inside text-slate-400 text-sm space-y-1">
+                <h4 className="text-xs font-bold uppercase text-slate-400 tracking-wider mb-2">Requirements & Key Features</h4>
+                <ul className="list-disc list-inside text-slate-300 text-sm space-y-1">
                   {selectedProject.requirements.map((req, idx) => (
                     <li key={idx}>{req}</li>
                   ))}
@@ -290,15 +360,15 @@ export default function Home() {
               </div>
             )}
 
-            <div className="pt-4 border-t border-slate-800 flex justify-end space-x-3">
+            <div className="pt-4 border-t border-slate-800 flex justify-end space-x-3 text-sm">
               {selectedProject.github && (
                 <a
                   href={selectedProject.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 border border-slate-700 hover:border-slate-500 rounded-lg text-sm transition"
+                  className="px-4 py-2 border border-slate-700 hover:border-slate-500 text-slate-300 rounded-lg transition"
                 >
-                  View GitHub
+                  GitHub Repository
                 </a>
               )}
               {selectedProject.demo && (
@@ -306,7 +376,7 @@ export default function Home() {
                   href={selectedProject.demo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-sm transition"
+                  className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition"
                 >
                   Live Demo
                 </a>
@@ -315,6 +385,7 @@ export default function Home() {
           </div>
         </div>
       )}
-    </main>
+
+    </div>
   );
 }
