@@ -34,37 +34,67 @@ export default function Home() {
       description: "Building scalable backend architecture, managing database schemas, and securing API endpoints for full-stack apps."
     },
     {
-      title: "C++ & Hardware / IoT",
+      title: "Cybersecurity & Network Engineering",
+      icon: "🛡️",
+      skills: "MITM Simulation, Network Traffic Monitoring, Packet Inspection",
+      description: "Designing security simulations, threat mitigation frameworks, and real-time network protocol inspection systems."
+    },
+    {
+      title: "C++ & Hardware / IoT Automation",
       icon: "🤖",
-      skills: "C++, Arduino, Embedded Systems, Problem Solving",
-      description: "Designing low-level system software, embedded IoT automation projects, and algorithmic problem-solving."
+      skills: "C++, Arduino, Embedded Sensors, System Automation",
+      description: "Designing low-level embedded software, smart healthcare devices, and algorithm-driven IoT solutions."
     }
   ];
 
   const projects = [
     {
-      title: "Interactive Bento Portfolio Platform",
-      repo: "jannatunnaemrefat/nextjs-portfolio",
-      desc: "High-performance developer portfolio built with Next.js App Router, Bento Grid layout, EmailJS integration, and interactive Framer Motion UI.",
-      tech: ["Next.js", "Tailwind CSS", "Framer Motion", "EmailJS"],
-      github: "https://github.com/refatislam630",
-      demo: "https://serefat-portfolio.vercel.app"
+      title: "Market Pulse Tracker",
+      repo: "jannatunnaemrefat/market-pulse-tracker",
+      desc: "Real-time financial and market data tracking web application with interactive charts and live rate updates.",
+      tech: ["Next.js", "React", "Tailwind CSS", "REST API"],
+      github: "https://github.com/csrefat/market-pulse-tracker",
+      demo: "https://serefat-portfolio.vercel.app" // 
     },
     {
-      title: "IoT Smart Home Controller",
-      repo: "jannatunnaemrefat/iot-smart-controller",
-      desc: "Embedded hardware automation controller built using C++ and Arduino with real-time sensor reporting and web dashboard integration.",
-      tech: ["C++", "Arduino", "IoT", "Node.js"],
-      github: "https://github.com/refatislam630",
-      demo: "https://github.com/refatislam630"
+      title: "Cybersecurity MITM Simulation",
+      repo: "jannatunnaemrefat/Cybersecurity-MITM-Simulation",
+      desc: "Network packet manipulation and Man-In-The-Middle attack/defense simulation framework built for network security analysis.",
+      tech: ["Python", "Networking", "Cybersecurity", "Linux"],
+      github: "https://github.com/csrefat/Cybersecurity-MITM-Simulation",
+      demo: ""
+    },
+    {
+      title: "NetGuard Project",
+      repo: "jannatunnaemrefat/NetGuard-Project",
+      desc: "Automated network security filter and monitoring system designed for threat detection and packet analysis.",
+      tech: ["Python", "C++", "Network Security", "Socket Programming"],
+      github: "https://github.com/csrefat/NetGuard-Project",
+      demo: ""
+    },
+    {
+      title: "Smart Traffic Management System",
+      repo: "jannatunnaemrefat/smart-traffic-management-system",
+      desc: "Intelligent traffic control system leveraging sensors and microcontrollers to dynamically reduce signal congestion.",
+      tech: ["C++", "Python", "IoT", "Arduino"],
+      github: "https://github.com/csrefat/smart-traffic-management-system",
+      demo: ""
+    },
+    {
+      title: "Smart Medicine Box",
+      repo: "jannatunnaemrefat/smart-medicine-box",
+      desc: "IoT-enabled healthcare automation system featuring timed pill dispensing, RTC alarm schedules, and remote monitoring alerts.",
+      tech: ["C++", "Arduino", "IoT", "Embedded Systems"],
+      github: "https://github.com/csrefat/smart-medicine-box",
+      demo: ""
     }
   ];
 
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-100 p-4 sm:p-6 lg:p-8 font-sans">
+    <main className="min-h-screen bg-slate-950 text-slate-100 p-4 sm:p-6 lg:p-8 font-sans selection:bg-cyan-500 selection:text-slate-950">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6">
         
-        {/* ================= 1.left coloum (Sidebar Profile) ================= */}
+        {/* ================= ১. বাম কলাম (Sidebar Profile) ================= */}
         <aside className="lg:col-span-3 space-y-6">
           <div className="bg-slate-900/60 border border-slate-800/80 rounded-3xl p-6 backdrop-blur-xl sticky top-6 shadow-2xl">
             {/* Availability Badge */}
@@ -97,7 +127,7 @@ export default function Home() {
             {/* Quick Action Buttons */}
             <div className="grid grid-cols-2 gap-3 mt-6">
               <a 
-                href="/resume.pdf" 
+                href="/resume.html" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700/60 text-xs font-semibold text-center text-slate-200 transition flex items-center justify-center gap-1.5"
@@ -124,7 +154,7 @@ export default function Home() {
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
               </a>
               <a 
-                href="https://www.linkedin.com/in/md-jannatun-naem-refat-839655234/?isSelfProfile=true" 
+                href="https://linkedin.com/in/md-jannatun-naem-refat-839655234" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="p-2.5 rounded-xl bg-slate-800/60 hover:bg-slate-700 border border-slate-700/50 text-slate-300 hover:text-cyan-400 transition"
@@ -183,17 +213,17 @@ export default function Home() {
               </span>
             </h2>
             <p className="text-slate-400 text-sm mt-3 leading-relaxed">
-              Junior Software Engineer compiling dreams into high-performance web applications and hardware solutions.
+              Software Engineer compiling ideas into high-performance web applications, cybersecurity simulations, and IoT automation solutions.
             </p>
           </div>
 
           {/* Career Stats Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[
-              { label: "EXPERIENCE", value: "1+ Yrs", color: "text-white" },
-              { label: "PROJECTS", value: "10+", color: "text-cyan-400" },
-              { label: "TECH STACK", value: "12+", color: "text-white" },
-              { label: "COMMITS", value: "450+", color: "text-cyan-400" },
+              { label: "EXPERIENCE", value: "Fresh Grad", color: "text-white" },
+              { label: "PROJECTS", value: "5+", color: "text-cyan-400" },
+              { label: "TECH STACK", value: "10+", color: "text-white" },
+              { label: "COMMITS", value: "250+", color: "text-cyan-400" },
             ].map((stat, idx) => (
               <div key={idx} className="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-4 text-center backdrop-blur-md">
                 <span className="text-slate-500 text-[10px] font-mono tracking-wider uppercase">{stat.label}</span>
@@ -210,6 +240,7 @@ export default function Home() {
 
             {projects.map((proj, idx) => (
               <div key={idx} className="bg-slate-900/60 border border-slate-800/80 rounded-2xl overflow-hidden backdrop-blur-md hover:border-slate-700 transition duration-300">
+                {/* Mac-style Window Header */}
                 <div className="bg-slate-950/80 px-4 py-2.5 border-b border-slate-800/80 flex items-center justify-between text-xs font-mono text-slate-400">
                   <div className="flex items-center gap-1.5">
                     <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block" />
@@ -219,10 +250,12 @@ export default function Home() {
                   <span className="text-[11px] text-slate-500">{proj.repo}</span>
                 </div>
 
+                {/* Card Content */}
                 <div className="p-6">
                   <h4 className="text-xl font-bold text-white">{proj.title}</h4>
                   <p className="text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed">{proj.desc}</p>
                   
+                  {/* Tech Stack Pills */}
                   <div className="flex flex-wrap gap-2 mt-4">
                     {proj.tech.map((t) => (
                       <span key={t} className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-cyan-500/10 border border-cyan-500/20 text-cyan-400">
@@ -231,13 +264,16 @@ export default function Home() {
                     ))}
                   </div>
 
+                  {/* Links */}
                   <div className="flex items-center gap-3 mt-6 pt-4 border-t border-slate-800/60">
                     <a href={proj.github} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-slate-300 hover:text-white flex items-center gap-1.5 transition">
                       <span>💻</span> Codebase
                     </a>
-                    <a href={proj.demo} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-400 flex items-center gap-1.5 transition ml-auto">
-                      <span>🚀</span> Live Demo
-                    </a>
+                    {proj.demo && (
+                      <a href={proj.demo} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-400 flex items-center gap-1.5 transition ml-auto">
+                        <span>🚀</span> Live Demo
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
@@ -345,10 +381,10 @@ export default function Home() {
 
               <div className="space-y-3 text-slate-300 text-xs sm:text-sm leading-relaxed">
                 <p>
-                  I am a passionate <strong className="text-white">Computer Science & Engineering (CSE)</strong> student at ULAB and a Junior Software Engineer based in Dhaka, Bangladesh.
+                  I am a passionate <strong className="text-white">Computer Science & Engineering (CSE)</strong> graduate from ULAB and a Software Engineer based in Dhaka, Bangladesh.
                 </p>
                 <p>
-                  My core strengths lie in full-stack web applications using <strong className="text-cyan-400">Next.js, React, Node.js</strong>, and hardware automation using <strong className="text-cyan-400">C++ and IoT</strong>.
+                  My core strengths lie in full-stack web development using <strong className="text-cyan-400">Next.js, React, Node.js</strong>, Network Security & Threat Analysis, and hardware automation using <strong className="text-cyan-400">C++ and IoT</strong>.
                 </p>
                 <p>
                   I thrive on solving complex engineering problems and crafting fluid user experiences with modern tools like Framer Motion & Tailwind CSS.

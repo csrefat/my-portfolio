@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume - Md. Jannatun Naem Refat</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #090d16;
+      color: #e2e8f0;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      body {
+        background-color: #ffffff !important;
+        color: #0f172a !important;
+      }
+      .resume-container {
+        border: none !important;
+        box-shadow: none !important;
+        background-color: #ffffff !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+      }
+      .text-slate-400, .text-slate-300, .text-slate-500 {
+        color: #334155 !important;
+      }
+      .text-white {
+        color: #0f172a !important;
+      }
+      .text-cyan-400, .text-cyan-500 {
+        color: #0284c7 !important;
+      }
+      .bg-slate-900, .bg-slate-950, .bg-slate-800\/50 {
+        background-color: transparent !important;
+      }
+      .border-slate-800, .border-slate-700\/60 {
+        border-color: #cbd5e1 !important;
+      }
+      .badge {
+        border: 1px solid #cbd5e1 !important;
+        background-color: #f1f5f9 !important;
+        color: #0f172a !important;
+      }
+    }
+  </style>
+</head>
+<body class="py-8 px-4 sm:px-6">
+
+  <!-- Print Action Top Bar -->
+  <div class="max-w-4xl mx-auto mb-6 flex items-center justify-between no-print bg-slate-900/80 p-4 rounded-2xl border border-slate-800 backdrop-blur-md">
+    <div class="text-xs text-slate-400 font-mono">
+      <span>📄 Interactive ATS Resume Template</span>
+    </div>
+    <button 
+      onclick="window.print()" 
+      className="cursor-pointer"
+      style="background: #06b6d4; color: #0f172a; font-weight: bold; font-size: 13px; padding: 8px 18px; border-radius: 10px; border: none; cursor: pointer;"
+    >
+      🖨️ Print / Save as PDF
+    </button>
+  </div>
+
+  <!-- Resume Main Card -->
+  <div class="resume-container max-w-4xl mx-auto bg-slate-900/90 border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-2xl space-y-8">
+    
+    <!-- Header Section -->
+    <header class="border-b border-slate-800 pb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+      <div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Md. Jannatun Naem Refat
+        </h1>
+        <p class="text-cyan-400 font-mono font-medium text-sm sm:text-base mt-1">
+          Software Engineer | Web Developer & IoT Automation
+        </p>
+        <p class="text-slate-400 text-xs sm:text-sm mt-2 max-w-lg leading-relaxed">
+          CSE Graduate passionate about building scalable full-stack web platforms, network security simulations, and IoT-driven automation systems.
+        </p>
+      </div>
+
+      <div class="space-y-2 text-xs font-mono text-slate-300 bg-slate-950/60 p-4 rounded-2xl border border-slate-800/80 w-full md:w-auto">
+        <div class="flex items-center gap-2">
+          <span>📧</span> <a href="mailto:refatislam630@gmail.com" class="hover:text-cyan-400 transition">refatislam630@gmail.com</a>
+        </div>
+        <div class="flex items-center gap-2">
+          <span>🌐</span> <a href="https://serefat-portfolio.vercel.app" target="_blank" class="hover:text-cyan-400 transition">serefat-portfolio.vercel.app</a>
+        </div>
+        <div class="flex items-center gap-2">
+          <span>💻</span> <a href="https://github.com/csrefat" target="_blank" class="hover:text-cyan-400 transition">https://github.com/csrefat</a>
+        </div>
+        <div class="flex items-center gap-2">
+          <span>📍</span> <span>Dhaka, Bangladesh</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Technical Skills Section -->
+    <section>
+      <h2 class="text-xs font-mono tracking-widest text-cyan-400 uppercase font-bold mb-4 flex items-center gap-2">
+        <span>⚡</span> Technical Expertise
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+        <div class="bg-slate-950/40 p-4 rounded-2xl border border-slate-800">
+          <span class="font-bold text-white block mb-1">Frontend & Web Architecture</span>
+          <p class="text-slate-400 leading-relaxed">Next.js (App Router), React.js, Tailwind CSS, JavaScript (ES6+), Framer Motion, Responsive UI/UX</p>
+        </div>
+        <div class="bg-slate-950/40 p-4 rounded-2xl border border-slate-800">
+          <span class="font-bold text-white block mb-1">Backend & Databases</span>
+          <p class="text-slate-400 leading-relaxed">Node.js, Express.js, RESTful APIs, MongoDB, Authentication</p>
+        </div>
+        <div class="bg-slate-950/40 p-4 rounded-2xl border border-slate-800">
+          <span class="font-bold text-white block mb-1">Languages & Cybersecurity</span>
+          <p class="text-slate-400 leading-relaxed">C++, Python, Network Traffic Analysis, Packet Inspection, MITM Security Simulations</p>
+        </div>
+        <div class="bg-slate-950/40 p-4 rounded-2xl border border-slate-800">
+          <span class="font-bold text-white block mb-1">Hardware & IoT Automation</span>
+          <p class="text-slate-400 leading-relaxed">Arduino, Embedded C++, Sensor Integration, RTC Schedulers, Git & GitHub</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="space-y-4">
+      <h2 class="text-xs font-mono tracking-widest text-cyan-400 uppercase font-bold mb-4 flex items-center gap-2">
+        <span>🚀</span> Key Projects
+      </h2>
+
+      <!-- Project 1 -->
+      <div class="bg-slate-950/50 p-5 rounded-2xl border border-slate-800">
+        <div class="flex justify-between items-start gap-4">
+          <h3 class="font-bold text-white text-base">Market Pulse Tracker</h3>
+          <span class="badge text-[10px] font-mono px-2.5 py-1 rounded-md bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Next.js & REST API</span>
+        </div>
+        <p class="text-slate-400 text-xs mt-2 leading-relaxed">
+          Real-time financial and market data tracking web application with interactive charts, live currency rates, and optimized rendering.
+        </p>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="bg-slate-950/50 p-5 rounded-2xl border border-slate-800">
+        <div class="flex justify-between items-start gap-4">
+          <h3 class="font-bold text-white text-base">Cybersecurity MITM Simulation</h3>
+          <span class="badge text-[10px] font-mono px-2.5 py-1 rounded-md bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Python & Networking</span>
+        </div>
+        <p class="text-slate-400 text-xs mt-2 leading-relaxed">
+          Network packet manipulation and Man-In-The-Middle attack/defense simulation framework built for security protocol analysis.
+        </p>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="bg-slate-950/50 p-5 rounded-2xl border border-slate-800">
+        <div class="flex justify-between items-start gap-4">
+          <h3 class="font-bold text-white text-base">NetGuard Project</h3>
+          <span class="badge text-[10px] font-mono px-2.5 py-1 rounded-md bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">C++ & Socket Programming</span>
+        </div>
+        <p class="text-slate-400 text-xs mt-2 leading-relaxed">
+          Automated network security filter and real-time monitoring system designed for packet inspection and threat detection.
+        </p>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="bg-slate-950/50 p-5 rounded-2xl border border-slate-800">
+        <div class="flex justify-between items-start gap-4">
+          <h3 class="font-bold text-white text-base">Smart Traffic Management System</h3>
+          <span class="badge text-[10px] font-mono px-2.5 py-1 rounded-md bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">IoT & C++</span>
+        </div>
+        <p class="text-slate-400 text-xs mt-2 leading-relaxed">
+          Intelligent traffic control system leveraging ultrasonic sensors and microcontrollers to dynamically control signal timing and reduce congestion.
+        </p>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="bg-slate-950/50 p-5 rounded-2xl border border-slate-800">
+        <div class="flex justify-between items-start gap-4">
+          <h3 class="font-bold text-white text-base">Smart Medicine Box</h3>
+          <span class="badge text-[10px] font-mono px-2.5 py-1 rounded-md bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Arduino & Healthcare Automation</span>
+        </div>
+        <p class="text-slate-400 text-xs mt-2 leading-relaxed">
+          IoT-enabled healthcare device featuring timed pill dispensing, RTC alarm schedules, and remote alerts for patient compliance.
+        </p>
+      </div>
+
+    </section>
+
+    <!-- Education Section -->
+    <section>
+      <h2 class="text-xs font-mono tracking-widest text-cyan-400 uppercase font-bold mb-4 flex items-center gap-2">
+        <span>🎓</span> Education
+      </h2>
+      <div class="bg-slate-950/50 p-5 rounded-2xl border border-slate-800 flex justify-between items-center">
+        <div>
+          <h3 class="font-bold text-white text-sm">Bachelor of Science in Computer Science & Engineering (CSE)</h3>
+          <p class="text-slate-400 text-xs mt-1">University of Liberal Arts Bangladesh (ULAB)</p>
+        </div>
+        <span class="text-xs font-mono text-cyan-400 font-semibold bg-cyan-500/10 px-3 py-1.5 rounded-lg border border-cyan-500/20">Dhaka, Bangladesh</span>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>
