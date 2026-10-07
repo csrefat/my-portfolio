@@ -61,34 +61,34 @@ const projects = [
 
 const skills = [
   {
-    icon: "🚀",
-    title: "Full-Stack Web Dev",
-    techs: "Next.js, React, Tailwind CSS, REST APIs",
-    desc: "Crafting blazing fast, responsive web applications with modern frontend architectures and clean code standards."
+    icon: "💻",
+    title: "Full-Stack Web Engineering",
+    techs: "Next.js, React, Node.js, REST APIs",
+    desc: "Architecting high-performance, responsive web applications with clean frontend design and modern code structures."
   },
   {
-    icon: "🛡️",
-    title: "Cybersecurity & Defense",
-    techs: "Packet Sniffing, MITM Analysis, ARP Protection",
-    desc: "Building security tools, analyzing network protocols, and engineering threat detection mechanisms."
+    icon: "⚙️",
+    title: "Backend & Systems Design",
+    techs: "RESTful Architecture, Databases, Microservices",
+    desc: "Building scalable server-side logic, optimized database schemas, and robust API endpoints for seamless system communication."
   },
   {
     icon: "🐍",
-    title: "Python & Automation",
-    techs: "Scapy, Network Automation, Scripting",
-    desc: "Developing low-level network manipulation tools, custom security scripts, and data analysis utilities."
+    title: "Python Development & Automation",
+    techs: "Python, Scripting, Data Workflows, Automation",
+    desc: "Writing efficient automation scripts, backend utilities, data pipelines, and core software tools."
   },
   {
     icon: "⚡",
-    title: "C++ & Socket Systems",
-    techs: "Low-level Networking, System Programming",
-    desc: "Implementing high-performance network filters, socket connections, and memory-efficient core logic."
+    title: "C++ & Core Algorithms",
+    techs: "Data Structures, Systems Programming, C++",
+    desc: "Implementing memory-efficient logic, complex algorithms, and high-performance system-level modules."
   }
 ];
 
 const stats = [
   { label: "Completed Projects", value: "12+" },
-  { label: "Security Tools Built", value: "5+" },
+  { label: "Software Systems Built", value: "5+" },
   { label: "Code Contributions", value: "500+" },
   { label: "Client Satisfaction", value: "100%" }
 ];
@@ -97,7 +97,49 @@ export default function Home() {
   const [darkMode, setDarkMode] = useState(true);
   const [filter, setFilter] = useState("all");
   const [selectedProject, setSelectedProject] = useState(null);
+
+  // Form State Management
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+
+  // Contact Form Submission Handler (Web3Forms API)
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          access_key: "9e4783f0-69c5-4136-a413-8d71221df4eb", // 🔑 Apnar Web3Forms Key
+          name: formData.name,
+          email: formData.email,
+          message: formData.message
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setFormSubmitted(true);
+        // Form reset
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setFormSubmitted(false), 5000);
+      } else {
+        alert("There was an error sending your message. Please try again.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Failed to send message. Please check your internet connection.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const filteredProjects =
     filter === "all"
@@ -142,7 +184,7 @@ export default function Home() {
               Software Engineer
             </p>
             <p className="text-xs text-emerald-50/90 leading-relaxed px-2 font-light">
-              Hi, I&apos;m Refat! I engineer high-performance web applications and cybersecurity network tools.
+              Hi, I&apos;m Refat! I am a Software Engineer focused on building scalable web applications, robust backend systems, and clean interfaces.
             </p>
 
             {/* Social Vector Icons */}
@@ -243,7 +285,7 @@ export default function Home() {
           <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-10">
             <div className="flex-1 space-y-4">
               <div className="inline-block px-3 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-xs font-mono font-semibold">
-                Software Engineer & Security Enthusiast
+                Software Engineer
               </div>
               
               <h2 className={`text-4xl md:text-6xl font-black tracking-tight leading-none ${
@@ -252,10 +294,11 @@ export default function Home() {
                 Md. Jannatun Naem <span className="text-[#10B981]">Refat</span>
               </h2>
 
+              {/* Software Engineering Focused Description */}
               <p className={`text-base md:text-lg leading-relaxed ${
                 darkMode ? "text-slate-300" : "text-slate-600"
               }`}>
-                Specialized in building full-stack web applications, cybersecurity network security tools, and low-level protocol simulators. Passionate about writing scalable code, clean interfaces, and robust backend logic.
+                Specialized in designing and architecting modern full-stack web applications, scalable backend APIs, and high-performance software systems. Passionate about writing clean, maintainable code, modern user interfaces, and optimizing system performance.
               </p>
 
               <div className="flex flex-wrap gap-4 pt-2">
@@ -325,7 +368,7 @@ export default function Home() {
             </h3>
           </div>
           <p className={`text-sm mb-8 max-w-2xl ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
-            I bridge the gap between secure network architecture and modern full-stack engineering. Here is a breakdown of my key tech stack.
+            I focus on end-to-end software engineering, from responsive frontends to maintainable backend architectures.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -375,7 +418,7 @@ export default function Home() {
                       : "text-slate-400 hover:text-white"
                   }`}
                 >
-                  {cat === "cyber" ? "Cybersecurity" : cat}
+                  {cat === "cyber" ? "Systems" : cat}
                 </button>
               ))}
             </div>
@@ -461,20 +504,13 @@ export default function Home() {
           </div>
 
           <p className={`text-sm mb-6 max-w-xl ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
-            Have a project in mind, a security inquiry, or want to discuss full-time roles? Drop me a message below!
+            Have a software engineering role, project inquiry, or collaboration in mind? Drop me a message below!
           </p>
 
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              setFormSubmitted(true);
-              setTimeout(() => setFormSubmitted(false), 5000);
-            }}
-            className="max-w-xl space-y-4 text-xs"
-          >
+          <form onSubmit={handleFormSubmit} className="max-w-xl space-y-4 text-xs">
             {formSubmitted && (
-              <div className="p-3 bg-emerald-500/20 border border-emerald-500/50 rounded-xl text-emerald-400 font-semibold text-xs animate-fade-in">
-                ✓ Thank you! Your message has been noted. I&apos;ll get back to you shortly.
+              <div className="p-3 bg-emerald-500/20 border border-emerald-500/50 rounded-xl text-emerald-400 font-semibold text-xs">
+                ✓ Thank you! Your message has been sent successfully to my email.
               </div>
             )}
 
@@ -486,7 +522,9 @@ export default function Home() {
                 <input
                   required
                   type="text"
-                  placeholder="e.g. Alex Mercer"
+                  placeholder="e.g. Refat"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className={`w-full rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#10B981] border transition ${
                     darkMode ? "bg-slate-900 border-slate-800 text-white placeholder-slate-500" : "bg-white border-slate-300 text-slate-800"
                   }`}
@@ -499,7 +537,9 @@ export default function Home() {
                 <input
                   required
                   type="email"
-                  placeholder="refatislam630@gmail.com"
+                  placeholder="your.email@example.com"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className={`w-full rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#10B981] border transition ${
                     darkMode ? "bg-slate-900 border-slate-800 text-white placeholder-slate-500" : "bg-white border-slate-300 text-slate-800"
                   }`}
@@ -514,7 +554,9 @@ export default function Home() {
               <textarea
                 required
                 rows={4}
-                placeholder="Tell me about your project or opportunity..."
+                placeholder="Tell me about your software project or opportunity..."
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 className={`w-full rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#10B981] border transition ${
                   darkMode ? "bg-slate-900 border-slate-800 text-white placeholder-slate-500" : "bg-white border-slate-300 text-slate-800"
                 }`}
@@ -523,9 +565,14 @@ export default function Home() {
 
             <button
               type="submit"
-              className="w-full md:w-auto px-8 py-3 bg-[#10B981] hover:bg-emerald-600 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-emerald-500/25 active:scale-95"
+              disabled={isSubmitting}
+              className="w-full md:w-auto px-8 py-3 bg-[#10B981] hover:bg-emerald-600 disabled:opacity-50 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-emerald-500/25 active:scale-95 flex items-center justify-center gap-2"
             >
-              Send Message
+              {isSubmitting ? (
+                <span>Sending Message...</span>
+              ) : (
+                <span>Send Message</span>
+              )}
             </button>
           </form>
         </section>
