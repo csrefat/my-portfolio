@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 
-// Portfolio Data
+// Portfolio Projects Data
 const projects = [
   {
     id: 0,
@@ -15,6 +15,7 @@ const projects = [
     demo: "https://serefat-portfolio.vercel.app",
     client: "Financial Tech Labs",
     industry: "FinTech & Analytics",
+    gradient: "from-emerald-600 to-teal-900",
     overview: "Market Pulse Tracker allows traders and investors to monitor real-time stock and currency market changes with interactive visualization and live REST API socket connections.",
     requirements: [
       "Real-time websocket/polling data update.",
@@ -33,6 +34,7 @@ const projects = [
     demo: "",
     client: "Security Research Lab",
     industry: "Cybersecurity & Defense",
+    gradient: "from-cyan-600 to-blue-950",
     overview: "A comprehensive network security simulation tool that demonstrates packet sniffing, ARP spoofing detection, and mitigation strategies in a controlled environment.",
     requirements: [
       "Low-level packet interception using Python Scapy.",
@@ -51,6 +53,7 @@ const projects = [
     demo: "",
     client: "Enterprise IT Infra",
     industry: "Network Infrastructure",
+    gradient: "from-slate-700 to-emerald-950",
     overview: "NetGuard acts as an intelligent network filter layer that evaluates socket traffic, identifies malicious payloads, and blocks suspicious connection requests in real-time.",
     requirements: [
       "High-performance C++ packet filtering layer.",
@@ -59,6 +62,7 @@ const projects = [
   }
 ];
 
+// Skills Data
 const skills = [
   {
     icon: "💻",
@@ -86,6 +90,24 @@ const skills = [
   }
 ];
 
+// Timeline Data (Education & Experience)
+const timeline = [
+  {
+    type: "experience",
+    period: "2023 - Present",
+    title: "Software Engineer / Developer",
+    organization: "Independent Software Development & Projects",
+    desc: "Building production-ready full-stack applications, designing REST APIs, optimizing system database queries, and implementing network security concepts."
+  },
+  {
+    type: "education",
+    period: "2021 - Present",
+    title: "B.Sc. in Computer Science & Engineering",
+    organization: "University Computer Science Dept.",
+    desc: "Specializing in Software Engineering, Data Structures, Algorithms, Computer Networks, Systems Programming, and Cybersecurity."
+  }
+];
+
 const stats = [
   { label: "Completed Projects", value: "12+" },
   { label: "Software Systems Built", value: "5+" },
@@ -97,13 +119,71 @@ export default function Home() {
   const [darkMode, setDarkMode] = useState(true);
   const [filter, setFilter] = useState("all");
   const [selectedProject, setSelectedProject] = useState(null);
+  const [copiedEmail, setCopiedEmail] = useState(false);
 
   // Form State Management
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
 
-  // Contact Form Submission Handler (Web3Forms API)
+  // Terminal State Management
+  const [termInput, setTermInput] = useState("");
+  const [termLogs, setTermLogs] = useState([
+    { type: "sys", text: "Refat DevTerminal v1.2.0 loaded." },
+    { type: "sys", text: "Type 'help' to view all interactive commands." }
+  ]);
+
+  // Copy Email Handler
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("refatislam630@gmail.com");
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2500);
+  };
+
+  // Terminal Logic
+  const handleTerminalSubmit = (e) => {
+    e.preventDefault();
+    const cmd = termInput.trim().toLowerCase();
+    if (!cmd) return;
+
+    let response = [];
+    if (cmd === "help") {
+      response = [
+        "Available commands:",
+        "  about     - Brief background summary",
+        "  skills    - Core technical stack",
+        "  projects  - Featured software projects",
+        "  contact   - Contact information & email",
+        "  whoami    - Terminal user identification",
+        "  clear     - Wipe terminal output"
+      ];
+    } else if (cmd === "about") {
+      response = ["Md. Jannatun Naem Refat - Software Engineer focused on web applications, backends, and system performance."];
+    } else if (cmd === "skills") {
+      response = ["Full-Stack: Next.js, React, Node.js, REST APIs | Systems: Python, C++, Networking, SQL/NoSQL"];
+    } else if (cmd === "projects") {
+      response = ["1. Market Pulse Tracker (FinTech) | 2. Cybersecurity MITM Simulation | 3. NetGuard Filter System"];
+    } else if (cmd === "contact") {
+      response = ["Email: refatislam630@gmail.com | LinkedIn & GitHub: csrefat"];
+    } else if (cmd === "whoami") {
+      response = ["Guest Recruiter / Engineering Evaluator"];
+    } else if (cmd === "clear") {
+      setTermLogs([]);
+      setTermInput("");
+      return;
+    } else {
+      response = [`Command not recognized: '${cmd}'. Type 'help' for available commands.`];
+    }
+
+    setTermLogs((prev) => [
+      ...prev,
+      { type: "usr", text: `$ ${termInput}` },
+      ...response.map((r) => ({ type: "sys", text: r }))
+    ]);
+    setTermInput("");
+  };
+
+  // Contact Form Submission
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -147,10 +227,17 @@ export default function Home() {
 
   return (
     <div
-      className={`min-h-screen flex flex-col lg:flex-row font-sans transition-colors duration-500 selection:bg-emerald-500 selection:text-white ${
+      className={`min-h-screen flex flex-col lg:flex-row font-sans transition-colors duration-500 pb-16 lg:pb-0 selection:bg-emerald-500 selection:text-white ${
         darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-800"
       }`}
     >
+      {/* Toast Notification */}
+      {copiedEmail && (
+        <div className="fixed top-6 right-6 z-50 bg-emerald-500 text-white text-xs font-bold px-4 py-3 rounded-xl shadow-2xl animate-bounce flex items-center gap-2">
+          <span>✓ Email copied to clipboard!</span>
+        </div>
+      )}
+
       {/* DevCard Premium Sidebar */}
       <aside className="w-full lg:w-80 bg-[#10B981] text-white p-6 flex flex-col justify-between lg:fixed lg:h-screen z-40 shadow-2xl transition-all">
         <div>
@@ -186,8 +273,8 @@ export default function Home() {
               Hi, I&apos;m Refat! I am a Software Engineer focused on building scalable web applications, robust backend systems, and clean interfaces.
             </p>
 
-            {/* Social Vector Icons */}
-            <div className="flex space-x-3 mt-4 text-xs justify-center">
+            {/* Social Vector Icons + Copy Email */}
+            <div className="flex space-x-2 mt-4 text-xs justify-center items-center">
               <a
                 href="https://www.linkedin.com/in/md-jannatun-naem-refat-839655234/"
                 target="_blank"
@@ -212,24 +299,26 @@ export default function Home() {
                 </svg>
               </a>
 
-              <a
-                href="mailto:refatislam630@gmail.com"
-                title="Email Me"
+              <button
+                onClick={handleCopyEmail}
+                title="Copy Email Address"
                 className="w-9 h-9 rounded-full bg-white/20 hover:bg-white text-white hover:text-emerald-700 flex items-center justify-center transition-all duration-300 shadow hover:scale-110"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                  <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
                 </svg>
-              </a>
+              </button>
             </div>
           </div>
 
           {/* Navigation Menu */}
-          <nav className="my-6 space-y-2 text-sm font-medium">
+          <nav className="my-6 space-y-1.5 text-xs font-medium">
             {[
               { href: "#about", label: "👤 About Me" },
-              { href: "#portfolio", label: "💼 Portfolio Projects" },
+              { href: "#terminal", label: "💻 Dev Terminal" },
               { href: "#what-i-do", label: "🛠️ Technical Skills" },
+              { href: "#portfolio", label: "💼 Portfolio Projects" },
+              { href: "#timeline", label: "🎓 Experience & Education" },
               { href: "/resume.html", label: "📄 Online Resume", external: true },
               { href: "#contact", label: "✉️ Get In Touch" }
             ].map((link, idx) => (
@@ -246,15 +335,14 @@ export default function Home() {
         </div>
 
         {/* Action Button & Dark Mode Switch */}
-        <div className="pt-4 border-t border-white/20 text-center space-y-4">
+        <div className="pt-4 border-t border-white/20 text-center space-y-3">
           <a
             href="#contact"
-            className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 bg-emerald-900 hover:bg-emerald-950 text-white font-semibold text-sm rounded-xl transition duration-300 shadow-lg hover:shadow-xl active:scale-95"
+            className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 bg-emerald-900 hover:bg-emerald-950 text-white font-semibold text-xs rounded-xl transition duration-300 shadow-lg active:scale-95"
           >
             <span>🚀 Hire Me Today</span>
           </a>
 
-          {/* Dark Mode Switch */}
           <div className="flex items-center justify-between text-xs font-semibold text-emerald-100 pt-1">
             <span className="flex items-center gap-1.5">
               {darkMode ? "🌙 Dark Mode" : "☀️ Light Mode"}
@@ -273,7 +361,7 @@ export default function Home() {
         </div>
       </aside>
 
-      {/* Main Content Area - Full Responsive Width Fix */}
+      {/* Main Content Area */}
       <main
         className={`flex-1 lg:ml-80 p-6 md:p-12 w-full min-h-screen transition-colors duration-500 ${
           darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-800"
@@ -299,18 +387,28 @@ export default function Home() {
                 Specialized in designing and architecting modern full-stack web applications, scalable backend APIs, and high-performance software systems. Passionate about writing clean, maintainable code, modern user interfaces, and optimizing system performance.
               </p>
 
-              <div className="flex flex-wrap gap-4 pt-2">
+              <div className="flex flex-wrap gap-3 pt-2">
                 <a
                   href="#portfolio"
-                  className="px-6 py-3 bg-[#10B981] hover:bg-emerald-600 text-white font-bold text-sm rounded-xl transition-all shadow-lg hover:shadow-emerald-500/25 active:scale-95 flex items-center gap-2"
+                  className="px-6 py-3 bg-[#10B981] hover:bg-emerald-600 text-white font-bold text-xs rounded-xl transition-all shadow-lg hover:shadow-emerald-500/25 active:scale-95 flex items-center gap-2"
                 >
                   <span>Explore Work</span>
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                 </a>
+                <button
+                  onClick={handleCopyEmail}
+                  className={`px-5 py-3 rounded-xl font-bold text-xs transition-all border shadow-sm flex items-center gap-2 active:scale-95 ${
+                    darkMode
+                      ? "bg-slate-900 hover:bg-slate-800 border-slate-800 text-slate-200"
+                      : "bg-white hover:bg-slate-100 border-slate-200 text-slate-700"
+                  }`}
+                >
+                  <span>📋 Copy Email</span>
+                </button>
                 <a
                   href="/resume.html"
                   target="_blank"
-                  className={`px-6 py-3 rounded-xl font-bold text-sm transition-all border shadow-sm flex items-center gap-2 active:scale-95 ${
+                  className={`px-5 py-3 rounded-xl font-bold text-xs transition-all border shadow-sm flex items-center gap-2 active:scale-95 ${
                     darkMode
                       ? "bg-slate-900 hover:bg-slate-800 border-slate-800 text-slate-200"
                       : "bg-white hover:bg-slate-100 border-slate-200 text-slate-700"
@@ -354,6 +452,53 @@ export default function Home() {
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* Interactive Dev Terminal Section */}
+        <section id="terminal" className="mb-16">
+          <div className="flex items-center mb-3">
+            <div className="w-2 h-8 bg-[#10B981] mr-3 rounded-full"></div>
+            <h3 className={`text-2xl font-black ${darkMode ? "text-white" : "text-slate-900"}`}>
+              Interactive Developer Terminal
+            </h3>
+          </div>
+          <p className={`text-sm mb-4 ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
+            Type CLI commands below to explore my profile like a terminal system!
+          </p>
+
+          <div className="rounded-2xl bg-slate-900 border border-slate-800 p-4 font-mono text-xs shadow-2xl overflow-hidden">
+            <div className="flex items-center gap-2 pb-3 mb-3 border-b border-slate-800 text-slate-500">
+              <span className="w-3 h-3 rounded-full bg-red-500 inline-block" />
+              <span className="w-3 h-3 rounded-full bg-yellow-500 inline-block" />
+              <span className="w-3 h-3 rounded-full bg-green-500 inline-block" />
+              <span className="ml-2 text-slate-400 font-bold">refat@dev-machine:~</span>
+            </div>
+
+            <div className="space-y-1.5 max-h-48 overflow-y-auto pr-2 mb-3">
+              {termLogs.map((log, idx) => (
+                <div
+                  key={idx}
+                  className={log.type === "usr" ? "text-emerald-400 font-bold" : "text-slate-300"}
+                >
+                  {log.text}
+                </div>
+              ))}
+            </div>
+
+            <form onSubmit={handleTerminalSubmit} className="flex items-center gap-2 pt-2 border-t border-slate-800/80">
+              <span className="text-emerald-400 font-bold">$</span>
+              <input
+                type="text"
+                placeholder="type 'help' or commands..."
+                value={termInput}
+                onChange={(e) => setTermInput(e.target.value)}
+                className="flex-1 bg-transparent text-emerald-300 focus:outline-none placeholder-slate-600 font-mono"
+              />
+              <button type="submit" className="px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded text-[10px] font-bold">
+                Run
+              </button>
+            </form>
           </div>
         </section>
 
@@ -422,70 +567,112 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Projects Grid */}
+          {/* Projects Grid with Mockup Preview Header */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProjects.map((project) => (
               <div
                 key={project.id}
-                className={`rounded-2xl p-6 flex flex-col justify-between border transition-all duration-300 hover:-translate-y-1.5 ${
+                className={`rounded-2xl overflow-hidden flex flex-col justify-between border transition-all duration-300 hover:-translate-y-1.5 ${
                   darkMode
                     ? "bg-slate-900/90 border-slate-800 hover:border-emerald-500/60"
                     : "bg-white border-slate-200 hover:border-emerald-500 hover:shadow-xl"
                 }`}
               >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-[10px] font-mono font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                {/* Visual Header Mockup */}
+                <div className={`h-28 bg-gradient-to-br ${project.gradient} p-4 flex flex-col justify-between relative overflow-hidden`}>
+                  <div className="flex items-center justify-between z-10">
+                    <span className="text-[10px] font-mono font-extrabold uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-black/40 text-emerald-300 backdrop-blur-sm border border-emerald-500/30">
                       {project.category}
                     </span>
+                    <span className="text-[10px] text-white/80 font-mono">system_v1.0</span>
                   </div>
-
-                  <h4 className={`text-lg font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>
-                    {project.title}
-                  </h4>
-                  <p className="text-xs text-[#10B981] font-semibold mb-3">
-                    {project.tagline}
-                  </p>
-                  <p className={`text-xs mb-4 leading-relaxed line-clamp-3 ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
-                    {project.desc}
-                  </p>
-
-                  <div className="flex flex-wrap gap-1.5 mb-6">
-                    {project.tech.map((t, i) => (
-                      <span
-                        key={i}
-                        className={`text-[10px] font-medium px-2.5 py-0.5 rounded-md ${
-                          darkMode ? "bg-slate-800 text-slate-300" : "bg-slate-100 text-slate-700"
-                        }`}
-                      >
-                        {t}
-                      </span>
-                    ))}
+                  <div className="z-10">
+                    <h5 className="text-white text-base font-black tracking-tight drop-shadow">{project.title}</h5>
                   </div>
+                  <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-white/10 rounded-full blur-xl pointer-events-none" />
                 </div>
 
-                <div className={`pt-4 border-t flex items-center justify-between text-xs font-semibold ${
-                  darkMode ? "border-slate-800" : "border-slate-100"
-                }`}>
-                  <button
-                    onClick={() => setSelectedProject(project)}
-                    className="text-[#10B981] hover:underline flex items-center gap-1"
-                  >
-                    <span>View Case Study</span>
-                    <span>→</span>
-                  </button>
-                  <div className="flex space-x-3">
-                    {project.github && (
-                      <a href={project.github} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-emerald-400">
-                        GitHub
-                      </a>
-                    )}
-                    {project.demo && (
-                      <a href={project.demo} target="_blank" rel="noreferrer" className="text-[#10B981] hover:underline">
-                        Live Demo
-                      </a>
-                    )}
+                <div className="p-6 flex-1 flex flex-col justify-between">
+                  <div>
+                    <p className="text-xs text-[#10B981] font-semibold mb-2">
+                      {project.tagline}
+                    </p>
+                    <p className={`text-xs mb-4 leading-relaxed line-clamp-3 ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
+                      {project.desc}
+                    </p>
+
+                    <div className="flex flex-wrap gap-1.5 mb-6">
+                      {project.tech.map((t, i) => (
+                        <span
+                          key={i}
+                          className={`text-[10px] font-medium px-2.5 py-0.5 rounded-md ${
+                            darkMode ? "bg-slate-800 text-slate-300" : "bg-slate-100 text-slate-700"
+                          }`}
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
                   </div>
+
+                  <div className={`pt-4 border-t flex items-center justify-between text-xs font-semibold ${
+                    darkMode ? "border-slate-800" : "border-slate-100"
+                  }`}>
+                    <button
+                      onClick={() => setSelectedProject(project)}
+                      className="text-[#10B981] hover:underline flex items-center gap-1"
+                    >
+                      <span>View Case Study</span>
+                      <span>→</span>
+                    </button>
+                    <div className="flex space-x-3">
+                      {project.github && (
+                        <a href={project.github} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-emerald-400">
+                          GitHub
+                        </a>
+                      )}
+                      {project.demo && (
+                        <a href={project.demo} target="_blank" rel="noreferrer" className="text-[#10B981] hover:underline">
+                          Live Demo
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Experience & Education Timeline Section */}
+        <section id="timeline" className="mb-16">
+          <div className="flex items-center mb-3">
+            <div className="w-2 h-8 bg-[#10B981] mr-3 rounded-full"></div>
+            <h3 className={`text-2xl font-black ${darkMode ? "text-white" : "text-slate-900"}`}>
+              Experience & Education
+            </h3>
+          </div>
+          <p className={`text-sm mb-8 max-w-xl ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
+            My academic foundation and engineering roadmap.
+          </p>
+
+          <div className="relative border-l-2 border-emerald-500/30 ml-3 space-y-8 pl-6">
+            {timeline.map((item, i) => (
+              <div key={i} className="relative group">
+                <div className="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-[#10B981] border-4 border-slate-950 group-hover:scale-125 transition-transform" />
+                <div className={`p-6 rounded-2xl border transition-all ${
+                  darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-sm"
+                }`}>
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                    {item.period}
+                  </span>
+                  <h4 className={`text-base font-bold mt-2 ${darkMode ? "text-white" : "text-slate-900"}`}>
+                    {item.title}
+                  </h4>
+                  <p className="text-xs text-[#10B981] font-medium mb-2">{item.organization}</p>
+                  <p className={`text-xs leading-relaxed ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
+                    {item.desc}
+                  </p>
                 </div>
               </div>
             ))}
@@ -582,6 +769,30 @@ export default function Home() {
           © {new Date().getFullYear()} Md. Jannatun Naem Refat. Built with Next.js & Tailwind CSS.
         </footer>
       </main>
+
+      {/* Mobile Floating Bottom Bar */}
+      <nav className="fixed bottom-0 left-0 right-0 bg-slate-900/90 backdrop-blur-md border-t border-slate-800 z-50 flex justify-around py-3 lg:hidden text-[10px] text-slate-400 font-bold">
+        <a href="#about" className="hover:text-emerald-400 flex flex-col items-center">
+          <span>👤</span>
+          <span>About</span>
+        </a>
+        <a href="#terminal" className="hover:text-emerald-400 flex flex-col items-center">
+          <span>💻</span>
+          <span>Terminal</span>
+        </a>
+        <a href="#portfolio" className="hover:text-emerald-400 flex flex-col items-center">
+          <span>💼</span>
+          <span>Projects</span>
+        </a>
+        <a href="#timeline" className="hover:text-emerald-400 flex flex-col items-center">
+          <span>🎓</span>
+          <span>Timeline</span>
+        </a>
+        <a href="#contact" className="hover:text-emerald-400 flex flex-col items-center text-emerald-400">
+          <span>✉️</span>
+          <span>Contact</span>
+        </a>
+      </nav>
 
       {/* Case Study Details Modal */}
       {selectedProject && (
