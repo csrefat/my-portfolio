@@ -158,7 +158,7 @@ export default function Home() {
         "  clear     - Wipe terminal output"
       ];
     } else if (cmd === "about") {
-      response = ["Md. Jannatun Naem Refat - Software Engineer focused on web applications, backends, and system performance."];
+      response = ["Md. Jannatun Naem Refat - Software Engineering student at ULAB focused on web applications, backends, and system performance."];
     } else if (cmd === "skills") {
       response = ["Full-Stack: Next.js, React, Node.js, REST APIs | Systems: Python, C++, Networking, SQL/NoSQL"];
     } else if (cmd === "projects") {
@@ -255,7 +255,7 @@ export default function Home() {
                 <img
                   src="/profile.jpg"
                   alt="Md. Jannatun Naem Refat"
-                  className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition duration-300"
                   onError={(e) => {
                     e.currentTarget.src = "https://via.placeholder.com/150";
                   }}
@@ -270,7 +270,7 @@ export default function Home() {
               Software Engineer
             </p>
             <p className="text-xs text-emerald-50/90 leading-relaxed px-2 font-light">
-              Hi, I&apos;m Refat! I am a Software Engineer focused on building scalable web applications, robust backend systems, and clean interfaces.
+              Hi, I&apos;m Refat! Computer Science & Engineering Student at ULAB, focused on building scalable web applications, robust backend systems, and clean interfaces.
             </p>
 
             {/* Social Vector Icons + Copy Email */}
@@ -429,7 +429,7 @@ export default function Home() {
                 <img
                   src="/profile.jpg"
                   alt="Md. Jannatun Naem Refat"
-                  className="w-full h-full object-cover filter grayscale hover:grayscale-0 transition duration-500 transform hover:scale-105"
+                  className="w-full h-full object-cover object-top filter grayscale hover:grayscale-0 transition duration-500 transform hover:scale-105"
                   onError={(e) => {
                     e.currentTarget.src = "https://via.placeholder.com/350x350";
                   }}
