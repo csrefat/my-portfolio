@@ -101,9 +101,9 @@ const timeline = [
   },
   {
     type: "education",
-    period: "2021 - Present",
+    period: "2023 - Present",
     title: "B.Sc. in Computer Science & Engineering",
-    organization: "University Computer Science Dept.",
+    organization: "University of Liberal Arts Bangladesh (ULAB)",
     desc: "Specializing in Software Engineering, Data Structures, Algorithms, Computer Networks, Systems Programming, and Cybersecurity."
   }
 ];
