@@ -116,7 +116,7 @@ export default function Home() {
           Accept: "application/json"
         },
         body: JSON.stringify({
-          access_key: "9e4783f0-69c5-4136-a413-8d71221df4eb", // 🔑 Apnar Web3Forms Key
+          access_key: "9e4783f0-69c5-4136-a413-8d71221df4eb",
           name: formData.name,
           email: formData.email,
           message: formData.message
@@ -127,7 +127,6 @@ export default function Home() {
 
       if (result.success) {
         setFormSubmitted(true);
-        // Form reset
         setFormData({ name: "", email: "", message: "" });
         setTimeout(() => setFormSubmitted(false), 5000);
       } else {
@@ -274,15 +273,15 @@ export default function Home() {
         </div>
       </aside>
 
-      {/* Main Content Area */}
+      {/* Main Content Area - Full Responsive Width Fix */}
       <main
-        className={`flex-1 lg:ml-80 p-6 md:p-12 max-w-6xl min-h-screen transition-colors duration-500 ${
+        className={`flex-1 lg:ml-80 p-6 md:p-12 w-full min-h-screen transition-colors duration-500 ${
           darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-800"
         }`}
       >
         {/* Hero Section */}
         <section id="about" className="mb-16 pt-4">
-          <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-10">
+          <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-10">
             <div className="flex-1 space-y-4">
               <div className="inline-block px-3 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-xs font-mono font-semibold">
                 Software Engineer
@@ -294,8 +293,7 @@ export default function Home() {
                 Md. Jannatun Naem <span className="text-[#10B981]">Refat</span>
               </h2>
 
-              {/* Software Engineering Focused Description */}
-              <p className={`text-base md:text-lg leading-relaxed ${
+              <p className={`text-base md:text-lg leading-relaxed max-w-3xl ${
                 darkMode ? "text-slate-300" : "text-slate-600"
               }`}>
                 Specialized in designing and architecting modern full-stack web applications, scalable backend APIs, and high-performance software systems. Passionate about writing clean, maintainable code, modern user interfaces, and optimizing system performance.
@@ -325,7 +323,7 @@ export default function Home() {
             </div>
 
             {/* Profile Photo Card */}
-            <div className="relative group w-full md:w-72 h-72 md:h-80 flex-shrink-0">
+            <div className="relative group w-full sm:w-72 h-72 sm:h-80 flex-shrink-0">
               <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl blur-lg opacity-40 group-hover:opacity-75 transition duration-500"></div>
               <div className={`relative w-full h-full rounded-2xl overflow-hidden border shadow-2xl ${
                 darkMode ? "border-slate-800 bg-slate-900" : "border-slate-200 bg-white"
@@ -371,7 +369,7 @@ export default function Home() {
             I focus on end-to-end software engineering, from responsive frontends to maintainable backend architectures.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
             {skills.map((s, idx) => (
               <div
                 key={idx}
@@ -507,7 +505,7 @@ export default function Home() {
             Have a software engineering role, project inquiry, or collaboration in mind? Drop me a message below!
           </p>
 
-          <form onSubmit={handleFormSubmit} className="max-w-xl space-y-4 text-xs">
+          <form onSubmit={handleFormSubmit} className="max-w-2xl space-y-4 text-xs">
             {formSubmitted && (
               <div className="p-3 bg-emerald-500/20 border border-emerald-500/50 rounded-xl text-emerald-400 font-semibold text-xs">
                 ✓ Thank you! Your message has been sent successfully to my email.
